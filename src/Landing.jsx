@@ -52,7 +52,7 @@ function Landing() {
     <div className="min-h-screen flex flex-col items-center justify-center text-center px-6">
       <div className="max-w-4xl flex-col flex mx-auto mb-12">
         <div className="text-2xl">
-          <h1 className="text-9xl font-bold text-gray-800 mb-6">TimeSync</h1>
+          <h1 className="text-9xl font-bold bg-gradient-to-r h-25 from-pink-500 via-purple-500 to-indigo-500 inline-block text-transparent bg-clip-text mb-6">TimeSync</h1>
         </div>
         <div className="text-5xl text-gray-600 mb-8 font-mono ">
           {formatTime()}

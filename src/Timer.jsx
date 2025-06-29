@@ -24,14 +24,23 @@ function Timer() {
 
   function handlesetSeconds(e) {
     const value = parseInt(e.target.value) || 0;
+    if(value>59){
+      setInputSeconds(59);
+    }
     setInputSeconds(value);
   }
   function handlesetMinutes(e) {
     const value = parseInt(e.target.value) || 0;
+    if(value>59){
+      setInputMinutes(59);
+    }
     setInputMinutes(value);
   }
   function handlesetHours(e) {
     const value = parseInt(e.target.value) || 0;
+    if(value>59){
+      setInputHours(59);
+    }
     setInputHours(value);
   }
 
@@ -122,7 +131,7 @@ function Timer() {
     return () => {
       stopTickingSound();
     };
-  }, [isRunning, totalMilliseconds]);
+  }, [isRunning]);
 
   useEffect(() => {
     let interval;
@@ -187,7 +196,7 @@ function Timer() {
 
       {!showAlert && (
         <div className="bg-white text-black flex flex-col items-center gap-4 rounded-2xl p-6 w-full max-w-md mx-4">
-          <div className="text-2xl sm:text-3xl md:text-4xl font-mono text-center break-all">
+          <div className="text-2xl sm:text-3xl md:text-4xl digital text-center break-all">
             {String(displayHours).padStart(2, "0")}:
             {String(displayMinutes).padStart(2, "0")}:
             {String(displaySeconds).padStart(2, "0")}:
@@ -195,8 +204,8 @@ function Timer() {
           </div>
           <div className="flex gap-4 w-full">
             <button
-              className="bg-gray-600 py-2 px-4 rounded hover:bg-gray-700 active:scale-95 transition-all text-white flex-1"
-              onClick={isRunning ? handlePause : handleResume}
+              className={`bg-gray-600 py-2 px-4 rounded hover:bg-gray-700 active:scale-95 transition-all text-white flex-1 `}
+              onClick={isRunning ? handlePause : handleResume } disabled={!isRunning}
             >
               {isRunning ? "Pause" : "Resume"}
             </button>
