@@ -147,7 +147,7 @@ function Timer() {
   }, [isRunning, totalMilliseconds]);
 
   return (
-    <div className="h-screen w-full bg-gradient-to-r from-pink-200 via-purple-400 to-blue-300 flex flex-col gap-4 sm:justify-center  items-center p-4">
+    <div className="h-screen w-full bg-gradient-to-tl from-pink-200 via-purple-400 to-blue-300 flex flex-col gap-4 sm:justify-center  items-center p-4">
       {/* Hidden audio element */}
       <audio ref={audioRef} preload="auto" src="timeup.mp3">
         Your browser does not support the audio element.

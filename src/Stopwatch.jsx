@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 function Stopwatch() {
   const [time, setTime] = useState(0); // Single source of truth in milliseconds
   const [isRunning, setIsRunning] = useState(false);
+  const [hasStarted, setHasStarted] = useState(false);
   const [laps, setLaps] = useState([]);
 
   // Calculate time units from total milliseconds
