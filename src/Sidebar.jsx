@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 function Sidebar() {
   return (
-    <div className="absolute w-screen justify-evenly items-center sm:h-[100vh] h-20 sm:w-25 bg-pink-200 flex sm:flex-col  sm:justify-evenly z-100 sm:items-center backdrop-blur-4xl border-b-2 sm:border-b-0 sm:border-r-2 border-black">
+    <div className="fixed w-screen justify-evenly items-center sm:h-[100vh] h-20 sm:w-25 bg-pink-200 flex sm:flex-col  sm:justify-evenly z-100 sm:items-center backdrop-blur-4xl border-b-2 sm:border-b-0 sm:border-r-2 border-black">
       <NavLink to={"/"}>
         <div className="sm:w-18 sm:p-2 w-12  bg-pink-300 rounded-full">
           <img src="logo.png" alt="" className="bg-pink-300 rounded-full sm:active:bg-pink-400 active:bg-pink-400" />

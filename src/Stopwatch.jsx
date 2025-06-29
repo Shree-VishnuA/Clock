@@ -3,7 +3,6 @@ import { useState, useEffect, useRef } from "react";
 function Stopwatch() {
   const [time, setTime] = useState(0); // Single source of truth in milliseconds
   const [isRunning, setIsRunning] = useState(false);
-  const [hasStarted, setHasStarted] = useState(false); // Track if stopwatch has been started
   const [laps, setLaps] = useState([]);
 
   // Calculate time units from total milliseconds
@@ -53,7 +52,6 @@ function Stopwatch() {
 
   function handleLap() {
     if (isRunning) {
-      // Only allow laps when stopwatch is currently running
       const newLap = {
         id: laps.length + 1,
         hours: hours,
@@ -70,7 +68,7 @@ function Stopwatch() {
     let interval;
     if (isRunning) {
       interval = setInterval(() => {
-        setTime((prevTime) => prevTime + 10); // Increment by 10ms
+        setTime((prevTime) => prevTime + 10);
       }, 10);
     }
     return () => {
@@ -82,7 +80,6 @@ function Stopwatch() {
     <div className="bg-pink-100">
       <div className="flex flex-col gap-4 sm:gap-8 items-center p-4 sm:p-2 sm:h-screen  bg-gradient-to-tl bg-pink-200 via-purple-400 to-blue-300 min-h-screen">
         <div className="relative">
-          {/* Rotating border background when running */}
           {isRunning && (
             <div
               className="absolute inset-0 rounded-full animate-spin"
@@ -163,7 +160,6 @@ function Stopwatch() {
           </button>
         </div>
 
-        {/* Display Laps */}
         {laps.length > 0 && (
           <div className="w-full max-w-xs sm:max-w-sm md:max-w-md text-black px-4 sm:px-0">
             <div

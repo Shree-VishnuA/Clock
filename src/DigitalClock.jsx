@@ -140,23 +140,18 @@ function DigitalClock() {
 
   return (
     <div className="h-screen bg-gradient-to-bl from-pink-200 via-purple-400 to-blue-300 px-3  sm:p-5">
-      {/* Local Clock - Responsive positioning */}
       <div className="fixed bottom-3 right-3 sm:bottom-4 sm:right-4 bg-white bg-opacity-20 backdrop-blur-2xl rounded-lg p-2 sm:p-3 z-50 border border-black shadow-lg">
         <div className="text-black text-sm sm:text-lg font-mono font-bold">
           Local: {formatTime()}
         </div>
       </div>
 
-      {/* Main Container */}
       <div className="flex  sm:items-center sm:justify-center sm:h-screen py-5 sm:py-8">
         <div className="bg-white backdrop-blur-3xl rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-2xl w-full max-w-xs sm:max-w-md md:max-w-lg text-center mx-auto">
-          
-          {/* Title */}
-          <span className="text-2xl sm:text-4xl   font-bold text-gray-800 mb-6 sm:mb-8">
+          <div className="text-2xl sm:text-4xl   font-bold text-gray-800 mb-6 sm:mb-8">
             World Clock
-          </span>
+          </div>
 
-          {/* Input Section */}
           <div className="mb-6 sm:mb-8">
             <input
               type="text"
@@ -182,7 +177,6 @@ function DigitalClock() {
             </button>
           </div>
 
-          {/* Results */}
           {result && (
             <div className="mt-6 sm:mt-8 p-4 sm:p-6 bg-white bg-opacity-80 rounded-xl sm:rounded-2xl border-l-4 border-blue-500 animate-fade-in">
               <div className="text-xl sm:text-2xl text-gray-800 font-semibold mb-2 sm:mb-3 break-words">
@@ -201,26 +195,26 @@ function DigitalClock() {
             </div>
           )}
 
-          {/* Error */}
           {error && (
             <div className="mt-6 sm:mt-8 p-4 sm:p-6 bg-red-50 border-l-4 border-red-500 rounded-xl sm:rounded-2xl animate-fade-in">
-              <div className="text-red-600 text-base sm:text-lg break-words">❌ {error}</div>
+              <div className="text-red-600 text-base sm:text-lg break-words">
+                ❌ {error}
+              </div>
             </div>
           )}
 
-          {/* Suggestions */}
           <div className="mt-4 sm:mt-6 text-left text-xs sm:text-sm text-gray-600">
             <div className="font-semibold text-gray-800 mb-2">
               Popular cities:
             </div>
             <div className="break-words leading-relaxed">
-              London, New York, Tokyo, Paris, Dubai, Sydney, Mumbai, Singapore, Los Angeles, Berlin
+              London, New York, Tokyo, Paris, Dubai, Sydney, Mumbai, Singapore,
+              Los Angeles, Berlin
             </div>
           </div>
         </div>
       </div>
 
-      {/* Custom styles for animations */}
       <style jsx>{`
         @keyframes fade-in {
           from {

@@ -6,12 +6,17 @@ import Stopwatch from "./Stopwatch.jsx"
 import DigitalClock from "./DigitalClock.jsx"
 import Timer from "./Timer.jsx"
 import Alarm from "./Alarm.jsx"
+import Landing from "./Landing.jsx";
 
 const router = createHashRouter([
   {
     path: "/",
     element: <Layout></Layout>,
     children: [
+      {
+        index: true, 
+        element: <Landing />,
+      },
       {
         path: "Stopwatch",
         element: <Stopwatch></Stopwatch>,
