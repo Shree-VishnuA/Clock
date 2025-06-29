@@ -8,7 +8,6 @@ function Timer() {
 
   // Display values (countdown timer)
   const [isRunning, setIsRunning] = useState(false);
-  const [isPaused, setIsPaused] = useState(true);
   const [totalMilliseconds, setTotalMilliseconds] = useState(0);
   const [showAlert, setShowAlert] = useState(false);
 
@@ -25,22 +24,27 @@ function Timer() {
 
   function handlesetSeconds(e) {
     const value = parseInt(e.target.value) || 0;
-    if (value > 59) {
+    if(value > 59){
       setInputSeconds(59);
+      return;
     }
     setInputSeconds(value);
   }
+  
   function handlesetMinutes(e) {
     const value = parseInt(e.target.value) || 0;
-    if (value > 59) {
+    if(value > 59){
       setInputMinutes(59);
+      return;
     }
     setInputMinutes(value);
   }
+  
   function handlesetHours(e) {
     const value = parseInt(e.target.value) || 0;
-    if (value > 59) {
+    if(value > 59){
       setInputHours(59);
+      return;
     }
     setInputHours(value);
   }
@@ -55,12 +59,12 @@ function Timer() {
 
   function handlePause() {
     setIsRunning(false);
-    setIsPaused(false);
   }
+  
   function handleResume() {
     setIsRunning(true);
-    setIsPaused(true);
   }
+  
   function handleOK() {
     setShowAlert(false);
     // Stop audio if playing
@@ -158,39 +162,44 @@ function Timer() {
     };
   }, [isRunning, totalMilliseconds]);
 
+  // Check if timer has been started (has time remaining or is currently running)
+  const timerStarted = totalMilliseconds > 0 || isRunning;
+
   return (
     <div className="h-screen w-full bg-gradient-to-tl from-pink-200 via-purple-400 to-blue-300 flex flex-col gap-4 sm:justify-center  items-center p-4">
       {/* Hidden audio element */}
-      <audio ref={audioRef} preload="auto" src="timeup.mp3">
+      <audio ref={audioRef} preload="auto">
         Your browser does not support the audio element.
       </audio>
-      <audio ref={tickingRef} preload="auto" src="ticking.mp3">
+      <audio ref={tickingRef} preload="auto">
         Your browser does not support the audio element.
       </audio>
 
       {showAlert && (
-        <div className="fixed inset-0 from-pink-200 via-purple-400 to-blue-300 bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-stone-400 text-black flex flex-col items-center gap-4 rounded-2xl p-6 justify-evenly w-140 h-fit ml-25 mx-4">
-            <div className="bg-pink-50 rounded-full p-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="40"
-                height="40"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="lucide lucide-hourglass-icon lucide-hourglass  "
-              >
-                <path d="M5 22h14" />
-                <path d="M5 2h14" />
-                <path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22" />
-                <path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2" />
-              </svg>
+        <div className="bg-stone-400 text-black flex flex-col items-center gap-4 rounded-2xl p-6 w-full max-w-md mx-4">
+          <div className="bg-stone-400 text-black flex flex-col items-center gap-4 rounded-2xl p-6 max-w-sm w-full mx-4">
+            <div>
+              <div className="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center">
+                <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-hourglass-icon lucide-hourglass"
+            >
+              <path d="M5 22h14" />
+              <path d="M5 2h14" />
+              <path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22" />
+              <path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2" />
+            </svg>
+              </div>
             </div>
-            <div className="text-6xl digital">
+            <div className="text-3xl  digital ">
               {String(inputHours).padStart(2, "0")}:
               {String(inputMinutes).padStart(2, "0")}:
               {String(inputSeconds).padStart(2, "0")}
@@ -215,7 +224,7 @@ function Timer() {
 
       {!showAlert && (
         <div className="bg-white text-black flex flex-col items-center gap-4 rounded-2xl p-6 w-full max-w-md mx-4">
-          <div className="text-2xl sm:text-3xl md:text-6xl digital text-center break-all">
+          <div className="text-2xl sm:text-3xl md:text-4xl font-mono text-center break-all">
             {String(displayHours).padStart(2, "0")}:
             {String(displayMinutes).padStart(2, "0")}:
             {String(displaySeconds).padStart(2, "0")}:
@@ -223,9 +232,11 @@ function Timer() {
           </div>
           <div className="flex gap-4 w-full">
             <button
-              className={`bg-gray-600 py-2 px-4 rounded hover:bg-gray-700 active:scale-95 transition-all text-white flex-1 `}
+              className={`bg-gray-600 py-2 px-4 rounded hover:bg-gray-700 active:scale-95 transition-all text-white flex-1 ${
+                !timerStarted ? "opacity-50 cursor-not-allowed" : ""
+              }`}
               onClick={isRunning ? handlePause : handleResume}
-              disabled={isPaused}
+              disabled={!timerStarted}
             >
               {isRunning ? "Pause" : "Resume"}
             </button>
@@ -238,12 +249,10 @@ function Timer() {
           </div>
         </div>
       )}
-
+      
       <div className="flex flex-col items-center gap-4 bg-white w-full max-w-md rounded-2xl p-6 mx-4">
         <div>
-          <h2 className="text-gray-800 text-xl sm:text-2xl font-bold text-center">
-            Set Time
-          </h2>
+          <h2 className="text-gray-800 text-xl sm:text-2xl font-bold text-center">Set Time</h2>
         </div>
         <div className="w-full flex gap-2 sm:gap-4 justify-center">
           <div className="flex flex-col items-center flex-1">
@@ -285,9 +294,7 @@ function Timer() {
 
         <button
           className={`text-white bg-gray-600 py-3 px-6 rounded-md w-full sm:w-auto ${
-            isRunning
-              ? "cursor-not-allowed opacity-50"
-              : "hover:bg-gray-700 active:scale-95"
+            isRunning ? "cursor-not-allowed opacity-50" : "hover:bg-gray-700 active:scale-95"
           } transition-all font-semibold`}
           onClick={handleStart}
           disabled={isRunning}
