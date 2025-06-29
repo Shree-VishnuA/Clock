@@ -6,11 +6,11 @@ function Layout(){
 
 
     return(
-        <div className="flex">
+        <div className="flex overflow-y-hidden">
             <div>
                 <Sidebar></Sidebar>
             </div>
-            <div className="w-[calc(100vw-80px)] ml-20">
+            <div className="sm:w-[calc(100vw-100px)] sm:ml-25 sm:mt-0 w-screen mt-20">
                 <Outlet></Outlet>
                 
             </div>

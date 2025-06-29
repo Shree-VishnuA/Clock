@@ -80,7 +80,7 @@ function Stopwatch() {
 
   return (
     <div className="bg-pink-100">
-      <div className="flex flex-col gap-4 sm:gap-3 items-center p-4 sm:p-2 sm:h-screen sm:overflow-y-hidden bg-gradient-to-tl bg-pink-200 via-purple-400 to-bg-pink-200 min-h-screen">
+      <div className="flex flex-col gap-4 sm:gap-8 items-center p-4 sm:p-2 sm:h-screen  bg-gradient-to-tl bg-pink-200 via-purple-400 to-blue-300 min-h-screen">
         <div className="relative">
           {/* Rotating border background when running */}
           {isRunning && (
@@ -88,7 +88,7 @@ function Stopwatch() {
               className="absolute inset-0 rounded-full animate-spin"
               style={{
                 background:
-                  "conic-gradient(from 0deg, #3b82f6, #60a5fa, #93c5fd, #dbeafe, #3b82f6)",
+                  "conic-gradient(from 0deg, #3b02f6, #60a0fa, #93c5fd, #dbeafe, #3b82f0)",
                 padding: "4px",
               }}
             >
@@ -114,7 +114,7 @@ function Stopwatch() {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-2 sm:gap-2 justify-center w-full max-w-sm sm:max-w-none">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-2 justify-center w-full max-w-sm sm:max-w-none">
           <button
             onClick={handleToggle}
             className={`px-6 sm:px-8 py-3 text-lg sm:text-xl font-semibold rounded-lg ${
@@ -142,22 +142,24 @@ function Stopwatch() {
                 : "bg-gray-300 text-gray-500 cursor-not-allowed"
             }`}
           >
-            <center><svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              className="sm:w-6 sm:h-6"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <line x1="10" x2="14" y1="2" y2="2" />
-              <line x1="12" x2="15" y1="14" y2="11" />
-              <circle cx="12" cy="14" r="8" />
-            </svg></center>
+            <center>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                className="sm:w-6 sm:h-6"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <line x1="10" x2="14" y1="2" y2="2" />
+                <line x1="12" x2="15" y1="14" y2="11" />
+                <circle cx="12" cy="14" r="8" />
+              </svg>
+            </center>
           </button>
         </div>
 
@@ -173,7 +175,9 @@ function Stopwatch() {
                   key={lap.id}
                   className="flex justify-between sm:justify-evenly p-2 sm:p-3 bg-gradient-to-tl bg-pink-100 via-purple-200 to-pink-100 rounded"
                 >
-                  <span className="font-medium text-sm sm:text-base">Lap {lap.id}</span>
+                  <span className="font-medium text-sm sm:text-base">
+                    Lap {lap.id}
+                  </span>
                   <span className="font-mono text-sm sm:text-base md:text-lg">
                     {formatTime(
                       lap.hours,

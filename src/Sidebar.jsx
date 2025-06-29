@@ -2,17 +2,17 @@ import { NavLink } from "react-router-dom";
 
 function Sidebar() {
   return (
-    <div className="absolute h-[100vh] w-25 bg-pink-200 flex flex-col justify-evenly items-center backdrop-blur-4xl border-r-2 border-black">
+    <div className="absolute w-screen justify-evenly items-center sm:h-[100vh] h-20 sm:w-25 bg-pink-200 flex sm:flex-col  sm:justify-evenly z-100 sm:items-center backdrop-blur-4xl border-b-2 sm:border-b-0 sm:border-r-2 border-black">
       <NavLink to={"/"}>
-        <div className="w-18 p-2 bg-pink-300 rounded-full">
-          <img src="logo.png" alt="" className="bg-pink-300 rounded-full" />
+        <div className="sm:w-18 sm:p-2 w-12  bg-pink-300 rounded-full">
+          <img src="logo.png" alt="" className="bg-pink-300 rounded-full sm:active:bg-pink-400 active:bg-pink-400" />
         </div>
       </NavLink>
       <NavLink to={"Alarm"}>
         {({ isActive }) => (
           <div
-            className={`w-15 flex flex-col bg-pink-300 text-black text-sm justify-center items-center py-3 px-9 rounded-md hover:cursor-pointer hover:border hover:border-gray-500 ${
-              isActive ? "text-gray-600 border-[2px] bg-pink-400" : "text-black"
+            className={`sm:w-15 w-12 flex flex-col  sm:bg-pink-300 text-black text-xs sm:text-sm justify-center items-center  py-2  sm:py-3 sm:px-9 rounded-md hover:cursor-pointer hover:border hover:border-gray-500 ${
+              isActive ? "sm:text-gray-600 sm:border-[2px] sm:bg-pink-400 bg-pink-400" : "sm:text-black"
             }`}
           >
             <svg
@@ -41,8 +41,8 @@ function Sidebar() {
       <NavLink to={"DigitalClock"}>
         {({ isActive }) => (
           <div
-            className={`w-15 flex flex-col text-sm text-black bg-pink-300 justify-center items-center py-3 px-9 rounded-md hover:cursor-pointer hover:border hover:border-gray-500  ${
-              isActive ? "text-gray-600 border-[2px] bg-pink-400" : "text-black"
+           className={`sm:w-15 w-12 flex flex-col  sm:bg-pink-300 text-black text-xs sm:text-sm justify-center items-center  py-2  sm:py-3 sm:px-9 rounded-md hover:cursor-pointer hover:border hover:border-gray-500 ${
+              isActive ? "sm:text-gray-600 sm:border-[2px] sm:bg-pink-400 bg-pink-400" : "sm:text-black"
             }`}
           >
             <svg
@@ -67,8 +67,8 @@ function Sidebar() {
       <NavLink to={"Timer"}>
         {({ isActive }) => (
           <div
-            className={`w-15 flex flex-col text-sm text-black bg-pink-300 justify-center items-center py-3 px-9 rounded-md hover:cursor-pointer hover:border hover:border-gray-500 ${
-              isActive ? "text-gray-600 border-[2px] bg-pink-400" : "text-black"
+           className={`sm:w-15 w-12 flex flex-col  sm:bg-pink-300 text-black text-xs sm:text-sm justify-center items-center  py-2  sm:py-3 sm:px-9 rounded-md hover:cursor-pointer hover:border hover:border-gray-500 ${
+              isActive ? "sm:text-gray-600 sm:border-[2px] sm:bg-pink-400 bg-pink-400" : "sm:text-black"
             }`}
           >
             <svg
@@ -95,8 +95,8 @@ function Sidebar() {
       <NavLink to={"Stopwatch"}>
         {({ isActive }) => (
           <div
-            className={`w-15 flex flex-col text-xs text-black bg-pink-300 justify-center items-center py-3 px-9 rounded-md hover:cursor-pointer hover:border hover:border-gray-500 ${
-              isActive ? "text-gray-600 border-[2px] bg-pink-400" : "text-black"
+            className={`sm:w-15 w-12 flex flex-col  sm:bg-pink-300 text-black text-[8px] sm:text-sm justify-center items-center  py-2  sm:py-3 sm:px-9 rounded-md hover:cursor-pointer hover:border hover:border-gray-500 ${
+              isActive ? "sm:text-gray-600 sm:border-[2px] sm:bg-pink-400 bg-pink-400" : "sm:text-black"
             }`}
           >
             <svg
