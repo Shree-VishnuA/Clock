@@ -1,13 +1,13 @@
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import Layout from "./Layout";
 import Stopwatch from "./Stopwatch.jsx"
 import DigitalClock from "./DigitalClock.jsx"
 import Timer from "./Timer.jsx"
 import Alarm from "./Alarm.jsx"
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <Layout></Layout>,
