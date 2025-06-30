@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
+
 function Landing() {
   const [time, setTime] = useState(new Date());
   const days = [
@@ -49,21 +50,23 @@ function Landing() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center text-center px-6">
+    <div className="min-h-screen flex flex-col items-center bg-gradient-to-tl from-pink-200 via-purple-400 to-blue-300justify-center text-center px-6">
       <div className="max-w-4xl flex-col flex mx-auto mb-12">
         <div className="text-2xl">
           <h1 className="text-9xl font-bold bg-gradient-to-r h-25 from-pink-500 via-purple-500 to-indigo-500 inline-block text-transparent bg-clip-text mb-6">TimeSync</h1>
         </div>
-        <div className="text-5xl text-gray-600 mb-8 font-mono ">
+       <div className="bg-amber-50 px-6 pt-6 rounded-xl shadow-2xl shadow-stone-600">
+         <div className="text-7xl text-stone-600 mb-8 digital ">
           {formatTime()}
         </div>
-        <div className="text-5xl text-gray-600 mb-8 font-mono ">
+        <div className="text-5xl text-stone-600 mb-8 ">
           {formattedDate}
         </div>
+       </div>
       </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto mb-16">
-        <div className="bg-white/90 rounded-3xl p-8 shadow-lg backdrop-blur-sm border border-white/30 hover:scale-105 transition-transform duration-300">
+        <div className="bg-white/90 rounded-3xl p-8 shadow-lg backdrop-blur-sm border border-white/30 hover:scale-102 transition-transform duration-300">
           <div className="w-16 h-16 bg-gradient-to-br from-pink-300 to-purple-400 rounded-2xl flex items-center justify-center mb-4 mx-auto">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -99,7 +102,7 @@ function Landing() {
           </NavLink>
         </div>
 
-        <div className="bg-white/90 rounded-3xl p-8 shadow-lg backdrop-blur-sm border border-white/30 hover:scale-105 transition-transform duration-300">
+        <div className="bg-white/90 rounded-3xl p-8 shadow-lg backdrop-blur-sm border border-white/30 hover:scale-102 transition-transform duration-300">
           <div className="w-16 h-16 bg-gradient-to-br from-pink-300 to-purple-400 rounded-2xl flex items-center justify-center mb-4 mx-auto">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -131,7 +134,7 @@ function Landing() {
           </NavLink>
         </div>
 
-        <div className="bg-white/90 rounded-3xl p-8 shadow-lg backdrop-blur-sm border border-white/30 hover:scale-105 transition-transform duration-300">
+        <div className="bg-white/90 rounded-3xl p-8 shadow-lg backdrop-blur-sm border border-white/30 hover:scale-102 transition-transform duration-300">
           <div className="w-16 h-16 bg-gradient-to-br from-pink-300 to-purple-400 rounded-2xl flex items-center justify-center mb-4 mx-auto">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -165,7 +168,7 @@ function Landing() {
           </NavLink>
         </div>
 
-        <div className="bg-white/90 rounded-3xl p-8 shadow-lg backdrop-blur-sm border border-white/30 hover:scale-105 transition-transform duration-300">
+        <div className="bg-white/90 rounded-3xl p-8 shadow-lg backdrop-blur-sm border border-white/30 hover:scale-102 transition-transform duration-300">
           <div className="w-16 h-16 bg-gradient-to-br from-pink-300 to-purple-400 rounded-2xl flex items-center justify-center mb-4 mx-auto">
             <svg
               xmlns="http://www.w3.org/2000/svg"

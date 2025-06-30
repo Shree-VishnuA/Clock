@@ -43,67 +43,110 @@ function DigitalClock() {
     setResult(null);
 
     try {
-      const cityMappings = {
-        "new york": "America/New_York",
-        london: "Europe/London",
-        tokyo: "Asia/Tokyo",
-        paris: "Europe/Paris",
-        dubai: "Asia/Dubai",
-        sydney: "Australia/Sydney",
-        mumbai: "Asia/Kolkata",
-        singapore: "Asia/Singapore",
-        "los angeles": "America/Los_Angeles",
-        berlin: "Europe/Berlin",
-        moscow: "Europe/Moscow",
-        beijing: "Asia/Shanghai",
-        cairo: "Africa/Cairo",
-        johannesburg: "Africa/Johannesburg",
-        toronto: "America/Toronto",
-        chicago: "America/Chicago",
-        seattle: "America/Los_Angeles",
-        miami: "America/New_York",
-        "mexico city": "America/Mexico_City",
-        "buenos aires": "America/Argentina/Buenos_Aires",
-        "sao paulo": "America/Sao_Paulo",
-        madrid: "Europe/Madrid",
-        rome: "Europe/Rome",
-        stockholm: "Europe/Stockholm",
-        istanbul: "Europe/Istanbul",
-        bangkok: "Asia/Bangkok",
-        jakarta: "Asia/Jakarta",
-        manila: "Asia/Manila",
-        seoul: "Asia/Seoul",
-        "hong kong": "Asia/Hong_Kong",
-        taipei: "Asia/Taipei",
-        melbourne: "Australia/Melbourne",
-        perth: "Australia/Perth",
-        auckland: "Pacific/Auckland",
-      };
-
-      const cityLower = city.toLowerCase().trim();
-      const timezone = cityMappings[cityLower];
-
-      if (!timezone) {
-        throw new Error(
-          `City "${city}" not found. Please try a major city name.`
-        );
-      }
-
-      const response = await fetch(
-        `https://api.api-ninjas.com/v1/worldtime?city=${timezone}`,
+      // First try with the city parameter
+      let response = await fetch(
+        `https://api.api-ninjas.com/v1/worldtime?city=${encodeURIComponent(city.trim())}`,
         {
           headers: {
-            "My-Api-Key": "PvrTMFtugj9tcQ5uTsK+9g==ai7eTBz7uRsAhMaP",
+            "X-Api-Key": "PvrTMFtugj9tcQ5uTsK+9g==ai7eTBz7uRsAhMaP",
           },
         }
       );
 
+      // If city doesn't work, try with timezone mapping
       if (!response.ok) {
-        throw new Error("Failed to fetch time data");
+        const cityMappings = {
+          "new york": "America/New_York",
+          "london": "Europe/London",
+          "tokyo": "Asia/Tokyo",
+          "paris": "Europe/Paris",
+          "dubai": "Asia/Dubai",
+          "sydney": "Australia/Sydney",
+          "mumbai": "Asia/Kolkata",
+          "delhi": "Asia/Kolkata",
+          "singapore": "Asia/Singapore",
+          "los angeles": "America/Los_Angeles",
+          "berlin": "Europe/Berlin",
+          "moscow": "Europe/Moscow",
+          "beijing": "Asia/Shanghai",
+          "shanghai": "Asia/Shanghai",
+          "cairo": "Africa/Cairo",
+          "johannesburg": "Africa/Johannesburg",
+          "toronto": "America/Toronto",
+          "chicago": "America/Chicago",
+          "seattle": "America/Los_Angeles",
+          "miami": "America/New_York",
+          "mexico city": "America/Mexico_City",
+          "buenos aires": "America/Argentina/Buenos_Aires",
+          "sao paulo": "America/Sao_Paulo",
+          "madrid": "Europe/Madrid",
+          "rome": "Europe/Rome",
+          "stockholm": "Europe/Stockholm",
+          "istanbul": "Europe/Istanbul",
+          "bangkok": "Asia/Bangkok",
+          "jakarta": "Asia/Jakarta",
+          "manila": "Asia/Manila",
+          "seoul": "Asia/Seoul",
+          "hong kong": "Asia/Hong_Kong",
+          "taipei": "Asia/Taipei",
+          "melbourne": "Australia/Melbourne",
+          "perth": "Australia/Perth",
+          "auckland": "Pacific/Auckland",
+          "vancouver": "America/Vancouver",
+          "montreal": "America/Toronto",
+          "amsterdam": "Europe/Amsterdam",
+          "zurich": "Europe/Zurich",
+          "vienna": "Europe/Vienna",
+          "warsaw": "Europe/Warsaw",
+          "athens": "Europe/Athens",
+          "helsinki": "Europe/Helsinki",
+          "oslo": "Europe/Oslo",
+          "copenhagen": "Europe/Copenhagen",
+          "lisbon": "Europe/Lisbon",
+          "brussels": "Europe/Brussels",
+          "prague": "Europe/Prague",
+          "budapest": "Europe/Budapest",
+          "bucharest": "Europe/Bucharest",
+          "kiev": "Europe/Kiev",
+          "minsk": "Europe/Minsk",
+          "riga": "Europe/Riga",
+          "vilnius": "Europe/Vilnius",
+          "tallinn": "Europe/Tallinn"
+        };
+
+        const cityLower = city.toLowerCase().trim();
+        const timezone = cityMappings[cityLower];
+
+        if (timezone) {
+          response = await fetch(
+            `https://api.api-ninjas.com/v1/worldtime?timezone=${timezone}`,
+            {
+              headers: {
+                "X-Api-Key": "PvrTMFtugj9tcQ5uTsK+9g==ai7eTBz7uRsAhMaP",
+              },
+            }
+          );
+        }
+      }
+
+      if (!response.ok) {
+        throw new Error(`City "${city}" not found. Please try a different city name.`);
       }
 
       const data = await response.json();
+      console.log("API Response:", data); // Debug log
+      
+      // Create date from the datetime string
       const datetime = new Date(data.datetime);
+
+      // Handle UTC offset calculation
+      let utcOffset = "UTC+00:00";
+      if (data.hour !== undefined) {
+        const offsetHours = Math.floor(Math.abs(data.hour));
+        const offsetMinutes = Math.abs((Math.abs(data.hour) - offsetHours) * 60);
+        const offsetSign = data.hour >= 0 ? "+" : "-";
+        utcOffset = `UTC${offsetSign}${offsetHours.toString().padStart(2, "0")}:${Math.round(offsetMinutes).toString().padStart(2, "0")}`;
+      }
 
       setResult({
         cityName: city.replace(/\b\w/g, (c) => c.toUpperCase()),
@@ -119,14 +162,13 @@ function DigitalClock() {
           month: "long",
           day: "numeric",
         }),
-        timezone: data.timezone,
-        utcOffset: `UTC${data.hour >= 0 ? "+" : "-"}${Math.abs(data.hour)
-          .toString()
-          .padStart(2, "0")}:00`,
+        timezone: data.timezone || "Unknown",
+        utcOffset: utcOffset,
+        dayOfWeek: data.day_of_week || datetime.toLocaleDateString("en-US", { weekday: "long" }),
       });
     } catch (error) {
-      console.error("Error:", error);
-      setError(error.message || "Could not fetch time data.");
+      console.error("Full Error:", error);
+      setError(`Error: ${error.message}. Try cities like: London, New York, Tokyo, Paris, Mumbai, Sydney`);
     } finally {
       setIsLoading(false);
     }
@@ -139,16 +181,16 @@ function DigitalClock() {
   };
 
   return (
-    <div className="h-screen bg-gradient-to-tl from-pink-200 via-purple-400 to-blue-300 px-3  sm:p-5">
+    <div className="h-screen bg-gradient-to-tl from-pink-200 via-purple-400 to-blue-300 px-3 sm:p-5">
       <div className="fixed bottom-3 right-3 sm:bottom-4 sm:right-4 bg-white bg-opacity-20 backdrop-blur-2xl rounded-lg p-2 sm:p-3 z-50 border border-black shadow-lg">
         <div className="text-black text-sm sm:text-lg font-mono font-bold">
           Local: {formatTime()}
         </div>
       </div>
 
-      <div className="flex  sm:items-center sm:justify-center sm:h-screen py-5 sm:py-8">
+      <div className="flex sm:items-center sm:justify-center sm:h-screen py-5 sm:py-8">
         <div className="bg-white backdrop-blur-3xl rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-2xl w-full max-w-xs sm:max-w-md md:max-w-lg text-center mx-auto">
-          <div className="text-2xl sm:text-4xl   font-bold text-gray-800 mb-6 sm:mb-8">
+          <div className="text-2xl sm:text-4xl font-bold text-gray-800 mb-6 sm:mb-8">
             World Clock
           </div>
 
@@ -164,7 +206,7 @@ function DigitalClock() {
             <button
               onClick={getTime}
               disabled={isLoading}
-              className="mt-3 sm:mt-4 w-fit sm:w-auto bg-gray-600 px-8 sm:px-10 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:active:scale-100"
+              className="mt-3 sm:mt-4 w-fit sm:w-auto bg-gray-600 text-white px-8 sm:px-10 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:active:scale-100"
             >
               {isLoading ? (
                 <span className="flex items-center justify-center">
@@ -191,6 +233,7 @@ function DigitalClock() {
               <div className="text-xs sm:text-sm text-gray-500 bg-blue-50 p-2 sm:p-3 rounded-lg space-y-1">
                 <div className="break-all">Timezone: {result.timezone}</div>
                 <div>UTC Offset: {result.utcOffset}</div>
+                <div>Day: {result.dayOfWeek}</div>
               </div>
             </div>
           )}
@@ -205,11 +248,10 @@ function DigitalClock() {
 
           <div className="mt-4 sm:mt-6 text-left text-xs sm:text-sm text-gray-600">
             <div className="font-semibold text-gray-800 mb-2">
-              Popular cities:
+              Guaranteed to work:
             </div>
             <div className="break-words leading-relaxed">
-              London, New York, Tokyo, Paris, Dubai, Sydney, Mumbai, Singapore,
-              Los Angeles, Berlin
+              <span className="font-medium">Major cities:</span> London, New York, Tokyo, Paris, Dubai, Sydney, Mumbai, Singapore, Los Angeles, Berlin, Moscow, Beijing
             </div>
           </div>
         </div>
