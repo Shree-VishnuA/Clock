@@ -45,7 +45,9 @@ function DigitalClock() {
     try {
       // First try with the city parameter
       let response = await fetch(
-        `https://api.api-ninjas.com/v1/worldtime?city=${encodeURIComponent(city.trim())}`,
+        `https://api.api-ninjas.com/v1/worldtime?city=${encodeURIComponent(
+          city.trim()
+        )}`,
         {
           headers: {
             "X-Api-Key": "PvrTMFtugj9tcQ5uTsK+9g==ai7eTBz7uRsAhMaP",
@@ -57,61 +59,121 @@ function DigitalClock() {
       if (!response.ok) {
         const cityMappings = {
           "new york": "America/New_York",
-          "london": "Europe/London",
-          "tokyo": "Asia/Tokyo",
-          "paris": "Europe/Paris",
-          "dubai": "Asia/Dubai",
-          "sydney": "Australia/Sydney",
-          "mumbai": "Asia/Kolkata",
-          "delhi": "Asia/Kolkata",
-          "singapore": "Asia/Singapore",
+          london: "Europe/London",
+          tokyo: "Asia/Tokyo",
+          paris: "Europe/Paris",
+          dubai: "Asia/Dubai",
+          sydney: "Australia/Sydney",
+          mumbai: "Asia/Kolkata",
+          delhi: "Asia/Kolkata",
+          singapore: "Asia/Singapore",
           "los angeles": "America/Los_Angeles",
-          "berlin": "Europe/Berlin",
-          "moscow": "Europe/Moscow",
-          "beijing": "Asia/Shanghai",
-          "shanghai": "Asia/Shanghai",
-          "cairo": "Africa/Cairo",
-          "johannesburg": "Africa/Johannesburg",
-          "toronto": "America/Toronto",
-          "chicago": "America/Chicago",
-          "seattle": "America/Los_Angeles",
-          "miami": "America/New_York",
+          berlin: "Europe/Berlin",
+          moscow: "Europe/Moscow",
+          beijing: "Asia/Shanghai",
+          shanghai: "Asia/Shanghai",
+          cairo: "Africa/Cairo",
+          johannesburg: "Africa/Johannesburg",
+          toronto: "America/Toronto",
+          chicago: "America/Chicago",
+          seattle: "America/Los_Angeles",
+          miami: "America/New_York",
           "mexico city": "America/Mexico_City",
           "buenos aires": "America/Argentina/Buenos_Aires",
           "sao paulo": "America/Sao_Paulo",
-          "madrid": "Europe/Madrid",
-          "rome": "Europe/Rome",
-          "stockholm": "Europe/Stockholm",
-          "istanbul": "Europe/Istanbul",
-          "bangkok": "Asia/Bangkok",
-          "jakarta": "Asia/Jakarta",
-          "manila": "Asia/Manila",
-          "seoul": "Asia/Seoul",
+          madrid: "Europe/Madrid",
+          rome: "Europe/Rome",
+          stockholm: "Europe/Stockholm",
+          istanbul: "Europe/Istanbul",
+          bangkok: "Asia/Bangkok",
+          jakarta: "Asia/Jakarta",
+          manila: "Asia/Manila",
+          seoul: "Asia/Seoul",
           "hong kong": "Asia/Hong_Kong",
-          "taipei": "Asia/Taipei",
-          "melbourne": "Australia/Melbourne",
-          "perth": "Australia/Perth",
-          "auckland": "Pacific/Auckland",
-          "vancouver": "America/Vancouver",
-          "montreal": "America/Toronto",
-          "amsterdam": "Europe/Amsterdam",
-          "zurich": "Europe/Zurich",
-          "vienna": "Europe/Vienna",
-          "warsaw": "Europe/Warsaw",
-          "athens": "Europe/Athens",
-          "helsinki": "Europe/Helsinki",
-          "oslo": "Europe/Oslo",
-          "copenhagen": "Europe/Copenhagen",
-          "lisbon": "Europe/Lisbon",
-          "brussels": "Europe/Brussels",
-          "prague": "Europe/Prague",
-          "budapest": "Europe/Budapest",
-          "bucharest": "Europe/Bucharest",
-          "kiev": "Europe/Kiev",
-          "minsk": "Europe/Minsk",
-          "riga": "Europe/Riga",
-          "vilnius": "Europe/Vilnius",
-          "tallinn": "Europe/Tallinn"
+          taipei: "Asia/Taipei",
+          melbourne: "Australia/Melbourne",
+          perth: "Australia/Perth",
+          auckland: "Pacific/Auckland",
+          vancouver: "America/Vancouver",
+          montreal: "America/Toronto",
+          amsterdam: "Europe/Amsterdam",
+          zurich: "Europe/Zurich",
+          vienna: "Europe/Vienna",
+          warsaw: "Europe/Warsaw",
+          athens: "Europe/Athens",
+          helsinki: "Europe/Helsinki",
+          oslo: "Europe/Oslo",
+          copenhagen: "Europe/Copenhagen",
+          lisbon: "Europe/Lisbon",
+          brussels: "Europe/Brussels",
+          prague: "Europe/Prague",
+          budapest: "Europe/Budapest",
+          bucharest: "Europe/Bucharest",
+          kiev: "Europe/Kiev",
+          minsk: "Europe/Minsk",
+          riga: "Europe/Riga",
+          vilnius: "Europe/Vilnius",
+          tallinn: "Europe/Tallinn",
+          mumbai: "Asia/Kolkata",
+          delhi: "Asia/Kolkata",
+          "new delhi": "Asia/Kolkata",
+          bangalore: "Asia/Kolkata",
+          bengaluru: "Asia/Kolkata",
+          hyderabad: "Asia/Kolkata",
+          chennai: "Asia/Kolkata",
+          kolkata: "Asia/Kolkata",
+          ahmedabad: "Asia/Kolkata",
+          pune: "Asia/Kolkata",
+          surat: "Asia/Kolkata",
+          jaipur: "Asia/Kolkata",
+          lucknow: "Asia/Kolkata",
+          kanpur: "Asia/Kolkata",
+          nagpur: "Asia/Kolkata",
+          indore: "Asia/Kolkata",
+          bhopal: "Asia/Kolkata",
+          patna: "Asia/Kolkata",
+          ranchi: "Asia/Kolkata",
+          guwahati: "Asia/Kolkata",
+          kochi: "Asia/Kolkata",
+          trivandrum: "Asia/Kolkata",
+          thiruvananthapuram: "Asia/Kolkata",
+          visakhapatnam: "Asia/Kolkata",
+          vijayawada: "Asia/Kolkata",
+          madurai: "Asia/Kolkata",
+          coimbatore: "Asia/Kolkata",
+          mysore: "Asia/Kolkata",
+          vellore: "Asia/Kolkata",
+          noida: "Asia/Kolkata",
+          ghaziabad: "Asia/Kolkata",
+          faridabad: "Asia/Kolkata",
+          gurgaon: "Asia/Kolkata",
+          gandhinagar: "Asia/Kolkata",
+          vadodara: "Asia/Kolkata",
+          nashik: "Asia/Kolkata",
+          aurangabad: "Asia/Kolkata",
+          amritsar: "Asia/Kolkata",
+          ludhiana: "Asia/Kolkata",
+          jalandhar: "Asia/Kolkata",
+          shimla: "Asia/Kolkata",
+          dehradun: "Asia/Kolkata",
+          haridwar: "Asia/Kolkata",
+          agra: "Asia/Kolkata",
+          varanasi: "Asia/Kolkata",
+          allahabad: "Asia/Kolkata",
+          meerut: "Asia/Kolkata",
+          jodhpur: "Asia/Kolkata",
+          udaipur: "Asia/Kolkata",
+          raipur: "Asia/Kolkata",
+          bilaspur: "Asia/Kolkata",
+          panaji: "Asia/Kolkata",
+          goa: "Asia/Kolkata",
+          siliguri: "Asia/Kolkata",
+          dhanbad: "Asia/Kolkata",
+          jamnagar: "Asia/Kolkata",
+          jalgaon: "Asia/Kolkata",
+          hosur: "Asia/Kolkata",
+          tiruchirappalli: "Asia/Kolkata",
+          salem: "Asia/Kolkata",
         };
 
         const cityLower = city.toLowerCase().trim();
@@ -130,12 +192,14 @@ function DigitalClock() {
       }
 
       if (!response.ok) {
-        throw new Error(`City "${city}" not found. Please try a different city name.`);
+        throw new Error(
+          `City "${city}" not found. Please try a different city name.`
+        );
       }
 
       const data = await response.json();
       console.log("API Response:", data); // Debug log
-      
+
       // Create date from the datetime string
       const datetime = new Date(data.datetime);
 
@@ -143,9 +207,15 @@ function DigitalClock() {
       let utcOffset = "UTC+00:00";
       if (data.hour !== undefined) {
         const offsetHours = Math.floor(Math.abs(data.hour));
-        const offsetMinutes = Math.abs((Math.abs(data.hour) - offsetHours) * 60);
+        const offsetMinutes = Math.abs(
+          (Math.abs(data.hour) - offsetHours) * 60
+        );
         const offsetSign = data.hour >= 0 ? "+" : "-";
-        utcOffset = `UTC${offsetSign}${offsetHours.toString().padStart(2, "0")}:${Math.round(offsetMinutes).toString().padStart(2, "0")}`;
+        utcOffset = `UTC${offsetSign}${offsetHours
+          .toString()
+          .padStart(2, "0")}:${Math.round(offsetMinutes)
+          .toString()
+          .padStart(2, "0")}`;
       }
 
       setResult({
@@ -164,11 +234,15 @@ function DigitalClock() {
         }),
         timezone: data.timezone || "Unknown",
         utcOffset: utcOffset,
-        dayOfWeek: data.day_of_week || datetime.toLocaleDateString("en-US", { weekday: "long" }),
+        dayOfWeek:
+          data.day_of_week ||
+          datetime.toLocaleDateString("en-US", { weekday: "long" }),
       });
     } catch (error) {
       console.error("Full Error:", error);
-      setError(`Error: ${error.message}. Try cities like: London, New York, Tokyo, Paris, Mumbai, Sydney`);
+      setError(
+        `Error: ${error.message}. Try cities like: London, New York, Tokyo, Paris, Mumbai, Sydney`
+      );
     } finally {
       setIsLoading(false);
     }
@@ -251,7 +325,9 @@ function DigitalClock() {
               Guaranteed to work:
             </div>
             <div className="break-words leading-relaxed">
-              <span className="font-medium">Major cities:</span> London, New York, Tokyo, Paris, Dubai, Sydney, Mumbai, Singapore, Los Angeles, Berlin, Moscow, Beijing
+              <span className="font-medium">Major cities:</span> London, New
+              York, Tokyo, Paris, Dubai, Sydney, Mumbai, Singapore, Los Angeles,
+              Berlin, Moscow, Beijing
             </div>
           </div>
         </div>
