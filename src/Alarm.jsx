@@ -25,7 +25,7 @@ function Alarm() {
     { key: "wednesday", label: "Wed", fullName: "Wednesday" },
     { key: "thursday", label: "Thu", fullName: "Thursday" },
     { key: "friday", label: "Fri", fullName: "Friday" },
-    { key: "saturday", label: "Sun", fullName: "Saturday" },
+    { key: "saturday", label: "Sat", fullName: "Saturday" },
   ];
 
   useEffect(() => {
