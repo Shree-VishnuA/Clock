@@ -166,7 +166,7 @@ function Timer() {
   const timerStarted = totalMilliseconds > 0 || isRunning;
 
   return (
-    <div className="h-screen w-full bg-gradient-to-tl from-pink-200 via-purple-400 to-blue-300 flex flex-col gap-4 sm:justify-center  items-center p-4">
+    <div className="h-screen w-full bg-gradient-to-tl from-stone-400 via-slate-400 to-stone-400 flex flex-col gap-4 sm:justify-center  items-center p-4">
       {/* Hidden audio element */}
       <audio ref={audioRef} preload="auto">
         Your browser does not support the audio element.

@@ -252,7 +252,7 @@ function DigitalClock() {
   };
 
   return (
-    <div className="h-screen bg-gradient-to-tl from-pink-200 via-purple-400 to-blue-300 px-3 sm:p-5">
+    <div className="h-screen bg-gradient-to-tl from-stone-400 via-slate-400 to-stone-400 px-3 sm:p-5">
       <div className="fixed bottom-3 right-3 sm:bottom-4 sm:right-4 bg-white bg-opacity-20 backdrop-blur-2xl rounded-lg p-2 sm:p-3 z-50 border border-black shadow-lg">
         <div className="text-black text-sm sm:text-lg font-mono font-bold">
           Local: {formatTime()}

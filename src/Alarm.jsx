@@ -508,7 +508,7 @@ function Alarm() {
   }
 
   return (
-    <div className="h-screen w-full text-black bg-gradient-to-tl from-pink-200 via-purple-400 to-blue-300 relative">
+    <div className="h-screen w-full text-black bg-gradient-to-tl from-stone-400 via-slate-400 to-stone-400 relative">
       {/* Ringing Alarm Modal */}
       {ringingAlarm && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 px-4">
@@ -723,7 +723,7 @@ function Alarm() {
                 <input
                   type="number"
                   value={inputHours}
-                  className="w-12 sm:w-16 border rounded-md border-gray-600 text-center py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
+                  className="w-12 sm:w-16 border rounded-md border-gray-600 text-center py-2 focus:outline-none focus:ring-2 focus:ring-slate-500 text-sm sm:text-base"
                   min={1}
                   max={12}
                   placeholder="12"
@@ -741,7 +741,7 @@ function Alarm() {
                 <input
                   type="number"
                   value={inputMinutes}
-                  className="w-12 sm:w-16 border rounded-md border-gray-600 text-center py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
+                  className="w-12 sm:w-16 border rounded-md border-gray-600 text-center py-2 focus:outline-none focus:ring-2 focus:ring-slate-500 text-sm sm:text-base"
                   min={0}
                   max={59}
                   placeholder="00"
@@ -781,7 +781,7 @@ function Alarm() {
           </button>
           <button
             onClick={handleOK}
-            className="px-3 sm:px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors flex-1 sm:flex-none text-sm sm:text-base"
+            className="px-3 sm:px-4 py-2 bg-slate-500 text-white rounded-md hover:bg-slate-600 transition-colors flex-1 sm:flex-none text-sm sm:text-base"
           >
             OK
           </button>

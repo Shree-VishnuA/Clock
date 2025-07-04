@@ -50,16 +50,16 @@ function Landing() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col items-center bg-gradient-to-tl from-pink-200 via-purple-400 to-blue-300justify-center text-center px-6">
-      <div className="max-w-4xl flex-col flex mx-auto mb-12">
+    <div className="min-h-screen flex flex-col  items-center bg-stone-400 from-stone-400 via-slate-400 to-stone-400 justify-center text-center px-6">
+      <div className="max-w-4xl flex-col flex mb-12">
         <div className="text-2xl">
-          <h1 className="text-9xl font-bold bg-gradient-to-r h-25 from-pink-500 via-purple-500 to-indigo-500 inline-block text-transparent bg-clip-text mb-6">TimeSync</h1>
+          <h1 className="text-9xl font-bold h-25 inline-block text-slate-600 bg-clip-text mb-6">TimeSync</h1>
         </div>
        <div className="bg-amber-50 px-6 pt-6 rounded-xl shadow-2xl shadow-stone-600">
-         <div className="text-7xl text-stone-600 mb-8 digital ">
+         <div className="text-7xl text-slate-600 mb-8 digital ">
           {formatTime()}
         </div>
-        <div className="text-5xl text-stone-600 mb-8 ">
+        <div className="text-5xl text-slate-600 mb-8 ">
           {formattedDate}
         </div>
        </div>
@@ -67,7 +67,7 @@ function Landing() {
 
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto mb-16">
         <div className="bg-white/90 rounded-3xl p-8 shadow-lg backdrop-blur-sm border border-white/30 hover:scale-102 transition-transform duration-300">
-          <div className="w-16 h-16 bg-gradient-to-br from-pink-300 to-purple-400 rounded-2xl flex items-center justify-center mb-4 mx-auto">
+          <div className="w-16 h-16 bg-slate-400 rounded-2xl flex items-center justify-center mb-4 mx-auto">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="35"
@@ -103,7 +103,7 @@ function Landing() {
         </div>
 
         <div className="bg-white/90 rounded-3xl p-8 shadow-lg backdrop-blur-sm border border-white/30 hover:scale-102 transition-transform duration-300">
-          <div className="w-16 h-16 bg-gradient-to-br from-pink-300 to-purple-400 rounded-2xl flex items-center justify-center mb-4 mx-auto">
+          <div className="w-16 h-16 bg-slate-400 rounded-2xl flex items-center justify-center mb-4 mx-auto">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="35"
@@ -135,7 +135,7 @@ function Landing() {
         </div>
 
         <div className="bg-white/90 rounded-3xl p-8 shadow-lg backdrop-blur-sm border border-white/30 hover:scale-102 transition-transform duration-300">
-          <div className="w-16 h-16 bg-gradient-to-br from-pink-300 to-purple-400 rounded-2xl flex items-center justify-center mb-4 mx-auto">
+          <div className="w-16 h-16 bg-slate-400 rounded-2xl flex items-center justify-center mb-4 mx-auto">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="35"
@@ -169,7 +169,7 @@ function Landing() {
         </div>
 
         <div className="bg-white/90 rounded-3xl p-8 shadow-lg backdrop-blur-sm border border-white/30 hover:scale-102 transition-transform duration-300">
-          <div className="w-16 h-16 bg-gradient-to-br from-pink-300 to-purple-400 rounded-2xl flex items-center justify-center mb-4 mx-auto">
+          <div className="w-16 h-16 bg-slate-400 rounded-2xl flex items-center justify-center mb-4 mx-auto">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="35"
@@ -210,24 +210,24 @@ function Landing() {
           and always accurate.
         </p>
         <div className="flex flex-wrap justify-center gap-4">
-          <div className="flex items-center space-x-2 bg-gradient-to-r from-pink-100 to-purple-100 px-4 py-2 rounded-full">
-            <div className="w-3 h-3 bg-pink-400 rounded-full"></div>
+          <div className="flex items-center space-x-2 bg-gradient-to-r from-stone-300 to-slate-300 px-4 py-2 rounded-full">
+            <div className="w-3 h-3 bg-stone-600 rounded-full"></div>
             <span className="text-sm text-gray-700">
               No signing-in required
             </span>
           </div>
-          <div className="flex items-center space-x-2 bg-gradient-to-r from-pink-100 to-purple-100 px-4 py-2 rounded-full">
-            <div className="w-3 h-3 bg-purple-400 rounded-full"></div>
+          <div className="flex items-center space-x-2 bg-gradient-to-r from-stone-300 to-slate-300 px-4 py-2 rounded-full">
+            <div className="w-3 h-3 bg-stone-600 rounded-full"></div>
             <span className="text-sm text-gray-700">Syncs across devices</span>
           </div>
-          <div className="flex items-center space-x-2 bg-gradient-to-r from-pink-100 to-purple-100 px-4 py-2 rounded-full">
-            <div className="w-3 h-3 bg-pink-400 rounded-full"></div>
+          <div className="flex items-center space-x-2 bg-gradient-to-r from-stone-300 to-slate-300 px-4 py-2 rounded-full">
+            <div className="w-3 h-3 bg-stone-600 rounded-full"></div>
             <span className="text-sm text-gray-700">Completely free</span>
           </div>
         </div>
       </div>
 
-      <footer className="text-center w-screen text-gray-500 text-sm py-6 border-t bg-pink-100 backdrop-blur-sm shadow-inner">
+      <footer className="text-center w-screen text-gray-500 text-sm py-6 border-t bg-stone-200 backdrop-blur-sm shadow-inner">
         <p>
           © {new Date().getFullYear()} TimeSync. Crafted with care by Shree
           Vishnu A.

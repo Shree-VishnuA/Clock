@@ -79,7 +79,7 @@ function Stopwatch() {
 
   return (
     <div className="bg-pink-100">
-      <div className="flex flex-col gap-4 sm:gap-8 items-center p-4 sm:p-2 sm:h-screen  bg-gradient-to-tl bg-pink-200 via-purple-400 to-blue-300 min-h-screen">
+      <div className="flex flex-col gap-4 sm:gap-8 items-center p-4 sm:p-2 sm:h-screen  bg-gradient-to-tl from-stone-400 via-slate-400 to-stone-400 min-h-screen">
         <div className="relative">
           {isRunning && (
             <div
