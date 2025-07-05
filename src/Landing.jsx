@@ -205,20 +205,20 @@ function Landing() {
           Choose any tool from above to get started. Simple, intuitive, and
           always accurate.
         </p>
-        <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4">
-          <div className="flex items-center space-x-2 bg-gradient-to-r dark:from-stone-700 dark:to-slate-700 from-stone-300 to-slate-300 px-3 sm:px-4 py-2 rounded-full">
+        <div className="flex flex-col items-center sm:flex-row flex-wrap justify-center gap-3 sm:gap-4">
+          <div className="flex items-center justify-center space-x-2 bg-gradient-to-r dark:from-stone-700 dark:to-slate-700 from-stone-300 to-slate-300 px-3 sm:px-4 py-2 rounded-full">
             <div className="w-2 h-2 sm:w-3 sm:h-3 bg-stone-600 dark:bg-stone-400 rounded-full flex-shrink-0"></div>
-            <span className="text-xs sm:text-sm text-gray-700 dark:text-gray-200">
+            <div className="text-xs sm:text-sm text-gray-700 dark:text-gray-200">
               No sign-up required
-            </span>
+            </div>
           </div>
-          <div className="flex items-center space-x-2 bg-gradient-to-r dark:from-stone-700 dark:to-slate-700 from-stone-300 to-slate-300 px-3 sm:px-4 py-2 rounded-full">
+          <div className="flex items-center justify-center space-x-2 bg-gradient-to-r dark:from-stone-700 dark:to-slate-700 from-stone-300 to-slate-300 px-3 sm:px-4 py-2 rounded-full">
             <div className="w-2 h-2 sm:w-3 sm:h-3 bg-stone-600 dark:bg-stone-400 rounded-full flex-shrink-0"></div>
             <span className="text-xs sm:text-sm text-gray-700 dark:text-gray-200">
               Syncs across devices
             </span>
           </div>
-          <div className="flex items-center space-x-2 bg-gradient-to-r dark:from-stone-700 dark:to-slate-700 from-stone-300 to-slate-300 px-3 sm:px-4 py-2 rounded-full">
+          <div className="flex items-center justify-center space-x-2 bg-gradient-to-r dark:from-stone-700 dark:to-slate-700 from-stone-300 to-slate-300 px-3 sm:px-4 py-2 rounded-full">
             <div className="w-2 h-2 sm:w-3 sm:h-3 bg-stone-600 dark:bg-stone-400 rounded-full flex-shrink-0"></div>
             <span className="text-xs sm:text-sm text-gray-700 dark:text-gray-200">
               Completely free
