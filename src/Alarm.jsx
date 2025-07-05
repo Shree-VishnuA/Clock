@@ -1,22 +1,28 @@
 import { Trash2, Volume2, VolumeX, Edit2, Check, X } from "lucide-react";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
+import { ClockContext } from "./ClockContext";
 
 function Alarm() {
   const [amActive, setAmActive] = useState(true);
   const [pmActive, setPmActive] = useState(false);
   const [inputHours, setInputHours] = useState("");
   const [inputMinutes, setInputMinutes] = useState("");
-  const [Alarms, setAlarms] = useState([]);
   const [openDropdown, setOpenDropdown] = useState(null);
   const [currentTime, setCurrentTime] = useState(new Date());
-  const [ringingAlarm, setRingingAlarm] = useState(null);
-  const [audioContext, setAudioContext] = useState(null);
   const [editingAlarm, setEditingAlarm] = useState(null);
   const [editHours, setEditHours] = useState("");
   const [editMinutes, setEditMinutes] = useState("");
   const [editPeriod, setEditPeriod] = useState("AM");
   const AlarmsContainerRef = useRef(null);
-  const oscillatorRef = useRef(null);
+
+  const {
+    alarms: Alarms,
+    setAlarms,
+    ringingAlarm,
+    setRingingAlarm,
+    audioContext,
+    oscillatorRef,
+  } = useContext(ClockContext);
 
   const daysOfWeek = [
     { key: "sunday", label: "Sun", fullName: "Sunday" },
@@ -114,8 +120,9 @@ function Alarm() {
       });
     };
 
-    checkAlarms();
-  }, [currentTime, Alarms, audioContext]);
+    const interval = setInterval(checkAlarms, 1000);
+    return () => clearInterval(interval);
+  }, [Alarms, audioContext]);
 
   const triggerAlarm = (alarm) => {
     console.log(`🚨 ALARM TRIGGERED: ${alarm.time} ${alarm.period}`);
@@ -123,9 +130,12 @@ function Alarm() {
     playAlarmSound();
 
     setTimeout(() => {
-      if (ringingAlarm && ringingAlarm.id === alarm.id) {
-        stopAlarm();
-      }
+      setRingingAlarm((current) => {
+        if (current && current.id === alarm.id) {
+          stopLocalAlarm();
+        }
+        return null;
+      });
     }, 60000);
   };
 
@@ -173,7 +183,7 @@ function Alarm() {
     }
   };
 
-  const stopAlarm = () => {
+  const stopLocalAlarm = () => {
     if (oscillatorRef.current) {
       try {
         oscillatorRef.current.oscillator.stop();
@@ -522,7 +532,7 @@ function Alarm() {
               {getSelectedDaysDisplay(ringingAlarm.selectedDays)}
             </div>
             <button
-              onClick={stopAlarm}
+              onClick={stopLocalAlarm}
               className="bg-red-500 text-white px-6 sm:px-8 py-3 rounded-xl font-semibold hover:bg-red-600 transition-colors w-full sm:w-auto"
             >
               Stop Alarm

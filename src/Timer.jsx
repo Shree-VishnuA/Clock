@@ -1,15 +1,17 @@
-import { useState, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
+import { ClockContext } from "./ClockContext";
+
 
 function Timer() {
-  // Input values (persistent)
-  const [inputSeconds, setInputSeconds] = useState(0);
-  const [inputMinutes, setInputMinutes] = useState(0);
-  const [inputHours, setInputHours] = useState(0);
+ const {
+  inputSeconds, setInputSeconds,
+  inputMinutes, setInputMinutes,
+  inputHours, setInputHours,
+  isRunning, setIsRunning,
+  totalMilliseconds, setTotalMilliseconds,
+  showAlert, setShowAlert
+} = useContext(ClockContext);
 
-  // Display values (countdown timer)
-  const [isRunning, setIsRunning] = useState(false);
-  const [totalMilliseconds, setTotalMilliseconds] = useState(0);
-  const [showAlert, setShowAlert] = useState(false);
 
   // Audio reference
   const audioRef = useRef(null);

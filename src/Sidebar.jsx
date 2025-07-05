@@ -4,20 +4,28 @@ function Sidebar() {
   return (
     <div className="fixed w-screen justify-evenly items-center sm:h-[100vh] h-20 sm:w-25  sm:bg-gradient-to-b from-stone-400 to-stone-400 flex sm:flex-col  sm:justify-evenly z-100 sm:items-center backdrop-blur-lg border-b-2 sm:border-b-0 sm:border-r-2 border-stone-700 bg-stone-400">
       <NavLink to={"/"}>
-        <div className="sm:w-18 sm:p-2 w-12  bg-stone-300 rounded-full">
-          <img
-            src="logo.png"
-            alt=""
-            className="bg-stone-300 rounded-full sm:active:bg-slate-400 active:bg-slate-400"
-          />
-        </div>
+        {({ isActive }) => (
+          <div
+            className={`${
+              isActive
+                ? "sm:text-gray-600 sm:border-3 sm:shadow-2xl sm:shadow-amber-50 border-2  border-black  sm:bg-slate-400 bg-slate-400"
+                : "sm:text-black"
+            } rounded-full`}
+          >
+            <img
+              src="logo.png"
+              alt=""
+              className={`rounded-full bg-stone-300 w-18`}
+            />
+          </div>
+        )}
       </NavLink>
       <NavLink to={"Alarm"}>
         {({ isActive }) => (
           <div
-            className={`sm:w-15 w-12 flex flex-col shadow-2xl sm:bg-stone-300 text-black text-xs sm:text-sm justify-center items-center  py-2  sm:py-3 sm:px-9 rounded-md hover:cursor-pointer hover:border hover:border-gray-800 ${
+            className={`sm:w-15 w-12 flex flex-col shadow-2xl sm:bg-stone-300 text-black text-xs sm:text-sm justify-center items-center  py-2  sm:py-3 sm:px-9 rounded-md hover:cursor-pointer hover:border-2 hover:border-gray-800  ${
               isActive
-                ? "sm:text-gray-600 sm:border-[2px] sm:bg-slate-400 bg-slate-400"
+                ? "sm:text-gray-600 sm:border-3 sm:shadow-2xl sm:shadow-amber-50 border-2  border-black  sm:bg-slate-400 bg-slate-400"
                 : "sm:text-black"
             }`}
           >
@@ -47,9 +55,9 @@ function Sidebar() {
       <NavLink to={"DigitalClock"}>
         {({ isActive }) => (
           <div
-            className={`sm:w-15 w-12 flex flex-col shadow-2xl sm:bg-stone-300 text-black text-xs sm:text-sm justify-center items-center  py-2  sm:py-3 sm:px-9 rounded-md hover:cursor-pointer hover:border hover:border-gray-800 ${
+            className={`sm:w-15 w-12 flex flex-col shadow-2xl sm:bg-stone-300 text-black text-xs sm:text-sm justify-center items-center  py-2  sm:py-3 sm:px-9 rounded-md hover:cursor-pointer hover:border-2 hover:border-gray-800 ${
               isActive
-                ? "sm:text-gray-600 sm:border-[2px] sm:bg-slate-400 bg-slate-400"
+                ? "sm:text-gray-600 sm:border-3 sm:shadow-2xl sm:shadow-amber-50 border-2  border-black  sm:bg-slate-400 bg-slate-400"
                 : "sm:text-black"
             }`}
           >
@@ -75,9 +83,9 @@ function Sidebar() {
       <NavLink to={"Timer"}>
         {({ isActive }) => (
           <div
-            className={`sm:w-15 w-12 flex flex-col shadow-2xl sm:bg-stone-300 text-black text-xs sm:text-sm justify-center items-center  py-2  sm:py-3 sm:px-9 rounded-md hover:cursor-pointer hover:border hover:border-gray-800 ${
+            className={`sm:w-15 w-12 flex flex-col shadow-2xl sm:bg-stone-300 text-black text-xs sm:text-sm justify-center items-center  py-2  sm:py-3 sm:px-9 rounded-md hover:cursor-pointer hover:border-2 hover:border-gray-800 ${
               isActive
-                ? "sm:text-gray-600 sm:border-[2px] sm:bg-slate-400 bg-slate-400"
+                ? "sm:text-gray-600 sm:border-3 sm:shadow-2xl sm:shadow-amber-50 border-2  border-black  sm:bg-slate-400 bg-slate-400"
                 : "sm:text-black"
             }`}
           >
@@ -105,9 +113,9 @@ function Sidebar() {
       <NavLink to={"Stopwatch"}>
         {({ isActive }) => (
           <div
-            className={`sm:w-15 w-12 flex flex-col  sm:bg-stone-300 text-black text-[8px] sm:text-sm justify-center items-center  py-2  sm:py-3 sm:px-9 rounded-md hover:cursor-pointer hover:border hover:border-gray-800 ${
+            className={`sm:w-15 w-12 flex flex-col  sm:bg-stone-300 text-black text-[8px] sm:text-sm justify-center items-center  py-2  sm:py-3 sm:px-9 rounded-md hover:cursor-pointer hover:border-2 hover:border-gray-800 ${
               isActive
-                ? "sm:text-gray-600 sm:border-[2px] sm:bg-slate-600 bg-slate-400"
+                ? "sm:text-gray-600 sm:border-3 sm:shadow-2xl sm:shadow-amber-50 border-2  border-black  sm:bg-slate-600 bg-slate-400"
                 : "sm:text-black"
             }`}
           >

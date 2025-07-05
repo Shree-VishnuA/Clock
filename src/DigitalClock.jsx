@@ -318,9 +318,7 @@ function DigitalClock() {
           )}
 
           <div className="mt-4 sm:mt-6 text-left text-xs sm:text-sm text-gray-600">
-            <div className="font-semibold text-gray-800 mb-2">
-              Guaranteed to work:
-            </div>
+            
             <div className="break-words leading-relaxed">
               <span className="font-medium">Major cities:</span> London, New
               York, Tokyo, Paris, Dubai, Sydney, Mumbai, Singapore, Los Angeles,
