@@ -152,31 +152,10 @@ function Alarm() {
       oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
       oscillator.type = "sine";
 
-      gainNode.gain.setValueAtTime(0, audioContext.currentTime);
-
-      const beepPattern = () => {
-        const currentTime = audioContext.currentTime;
-        gainNode.gain.setValueAtTime(0.3, currentTime);
-        gainNode.gain.setValueAtTime(0.3, currentTime + 0.5);
-        gainNode.gain.setValueAtTime(0, currentTime + 0.5);
-        gainNode.gain.setValueAtTime(0, currentTime + 0.7);
-        gainNode.gain.setValueAtTime(0.3, currentTime + 0.7);
-        gainNode.gain.setValueAtTime(0.3, currentTime + 1.2);
-        gainNode.gain.setValueAtTime(0, currentTime + 1.2);
-      };
-
+      gainNode.gain.setValueAtTime(0.3, audioContext.currentTime); // Constant beep
       oscillator.start();
-      beepPattern();
 
-      const beepInterval = setInterval(() => {
-        if (ringingAlarm) {
-          beepPattern();
-        } else {
-          clearInterval(beepInterval);
-        }
-      }, 2000);
-
-      oscillatorRef.current = { oscillator, gainNode, interval: beepInterval };
+      oscillatorRef.current = { oscillator, gainNode };
     } catch (error) {
       console.error("Error playing alarm sound:", error);
       alert(`🚨 ALARM! Time: ${ringingAlarm?.time} ${ringingAlarm?.period}`);
@@ -187,7 +166,6 @@ function Alarm() {
     if (oscillatorRef.current) {
       try {
         oscillatorRef.current.oscillator.stop();
-        clearInterval(oscillatorRef.current.interval);
       } catch (error) {
         console.error("Error stopping alarm:", error);
       }
@@ -533,7 +511,9 @@ function Alarm() {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 px-4">
           <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 sm:p-8 max-w-xs sm:max-w-sm w-full text-center animate-pulse">
             <div className="text-4xl sm:text-6xl mb-4">🚨</div>
-            <div className="text-xl sm:text-2xl font-bold mb-2 text-black dark:text-white">ALARM!</div>
+            <div className="text-xl sm:text-2xl font-bold mb-2 text-black dark:text-white">
+              ALARM!
+            </div>
             <div className="text-lg sm:text-xl mb-4 text-black dark:text-white">
               {ringingAlarm.time} {ringingAlarm.period}
             </div>
@@ -638,7 +618,9 @@ function Alarm() {
                       <button
                         onClick={() => handleEditAlarm(alarm)}
                         className={`text-2xl sm:text-4xl font-light hover:text-blue-300 transition-colors cursor-pointer ${
-                          alarm.isActive ? "text-white" : "text-gray-400 dark:text-gray-500"
+                          alarm.isActive
+                            ? "text-white"
+                            : "text-gray-400 dark:text-gray-500"
                         }`}
                       >
                         {alarm.time}
@@ -670,7 +652,9 @@ function Alarm() {
                         {/* Toggle Switch */}
                         <div
                           className={`relative inline-flex h-5 w-9 sm:h-6 sm:w-11 items-center rounded-full cursor-pointer transition-colors ${
-                            alarm.isActive ? "bg-gray-800 dark:bg-slate-800" : "bg-gray-400 dark:bg-slate-500"
+                            alarm.isActive
+                              ? "bg-gray-800 dark:bg-slate-800"
+                              : "bg-gray-400 dark:bg-slate-500"
                           }`}
                           onClick={() => handleToggleAlarm(alarm.id)}
                         >

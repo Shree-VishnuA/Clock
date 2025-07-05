@@ -161,6 +161,7 @@ function Stopwatch() {
             <line x1="12" x2="15" y1="14" y2="11" />
             <circle cx="12" cy="14" r="8" />
           </svg>
+          <p className="text-xs">Lap</p>
         </center>
       </button>
     </div>

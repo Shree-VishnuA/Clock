@@ -72,8 +72,7 @@ function Timer() {
   }
 
   function handleOK() {
-    setShowAlert(false);
-    // Stop audio if playing
+    setShowAlert(false); 
     if (audioRef.current) {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
@@ -85,8 +84,7 @@ function Timer() {
     if (audioRef.current) {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
-    }
-    // Stop audio if playing
+    } 
     const total = (inputSeconds + inputMinutes * 60 + inputHours * 3600) * 1000; // Convert to milliseconds
     if (total > 0) {
       setTotalMilliseconds(total);
@@ -102,29 +100,25 @@ function Timer() {
     if (audioRef.current) {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
-    }
-    // Keep input values unchanged - they remain the same
+    } 
   }
-
-  // Function to play audio when timer reaches zero
+ 
   function playTimerEndSound() {
     if (audioRef.current) {
-      audioRef.current.volume = 0.7; // Set volume (0.0 to 1.0)
-      audioRef.current.loop = true; // Loop the audio continuously
+      audioRef.current.volume = 0.7;  
+      audioRef.current.loop = true;  
       audioRef.current.play();
     }
   }
-
-  // Function to start ticking sound
+ 
   function startTickingSound() {
     if (tickingRef.current) {
-      tickingRef.current.volume = 0.3; // Lower volume for ticking
+      tickingRef.current.volume = 0.3;  
       tickingRef.current.loop = true;
       tickingRef.current.play();
     }
   }
-
-  // Function to stop ticking sound
+ 
   function stopTickingSound() {
     if (tickingRef.current) {
       tickingRef.current.pause();
@@ -139,8 +133,7 @@ function Timer() {
     } else {
       stopTickingSound();
     }
-
-    // Cleanup function to stop ticking when component unmounts
+ 
     return () => {
       stopTickingSound();
     };
@@ -151,24 +144,21 @@ function Timer() {
     if (isRunning && totalMilliseconds > 0) {
       interval = setInterval(() => {
         setTotalMilliseconds((prev) => {
-          if (prev <= 100) {
-            // 100ms threshold - Timer has ended
+          if (prev <= 100) { 
             setIsRunning(false);
             setShowAlert(true); // Show the alert popup
-            playTimerEndSound();
-            // Play audio when countdown reaches zero
+            playTimerEndSound(); 
             return 0;
           }
-          return prev - 100; // Decrease by 100ms each interval
+          return prev - 100;  
         });
-      }, 100); // Update every 100ms instead of 10ms
+      }, 100);  
     }
     return () => {
       if (interval) clearInterval(interval);
     };
   }, [isRunning, totalMilliseconds]);
 
-  // Check if timer has been started (has time remaining or is currently running)
   const timerStarted = totalMilliseconds > 0 || isRunning;
 
   return (

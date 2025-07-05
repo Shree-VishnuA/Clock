@@ -68,7 +68,7 @@ function Landing() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 max-w-6xl mx-auto mb-8 sm:mb-12 lg:mb-16 w-full">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 w-6xl mx-auto mb-8 sm:mb-12 lg:mb-16 w-full">
         <div className="bg-white/90 dark:bg-slate-800 rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-lg backdrop-blur-sm border border-white/30 dark:border-slate-600 hover:scale-102 transition-transform duration-300">
           <div className="w-12 h-12 sm:w-16 sm:h-16 bg-slate-400 dark:bg-slate-600 rounded-xl sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 mx-auto">
             <svg

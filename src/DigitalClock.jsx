@@ -195,12 +195,10 @@ function DigitalClock() {
       }
 
       const data = await response.json();
-      console.log("API Response:", data); // Debug log
-
-      // Create date from the datetime string
+      console.log("API Response:", data);  
+ 
       const datetime = new Date(data.datetime);
-
-      // Handle UTC offset calculation
+ 
       let utcOffset = "UTC+00:00";
       if (data.hour !== undefined) {
         const offsetHours = Math.floor(Math.abs(data.hour));
@@ -238,7 +236,7 @@ function DigitalClock() {
     } catch (error) {
       console.error("Full Error:", error);
       setError(
-        `Error: ${error.message}. Try cities like: London, New York, Tokyo, Paris, Mumbai, Sydney`
+        `Error: ${error.message}. Try cities like: London, New York, Tokyo, Paris, Mumbai`
       );
     } finally {
       setIsLoading(false);
@@ -321,7 +319,7 @@ function DigitalClock() {
             
             <div className="break-words leading-relaxed">
               <span className="font-medium">Major cities:</span> London, New
-              York, Tokyo, Paris, Dubai, Sydney, Mumbai, Singapore, Los Angeles,
+              York, Tokyo, Paris, Dubai, Mumbai, Singapore, Los Angeles,
               Berlin, Moscow, Beijing
             </div>
           </div>
