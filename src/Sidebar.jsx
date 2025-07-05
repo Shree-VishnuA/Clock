@@ -115,7 +115,7 @@ function Sidebar() {
           <div
             className={`sm:w-15 w-12 flex flex-col shadow-2xl sm:bg-stone-300 dark:sm:bg-stone-700 text-black dark:text-white text-xs sm:text-sm justify-center items-center py-2 sm:py-3 sm:px-9 rounded-md hover:cursor-pointer hover:border-2 hover:border-gray-800 dark:hover:border-gray-300 ${
               isActive
-                ? "sm:text-gray-600 dark:sm:text-gray-300 sm:border-3 dark:sm:shadow-md  sm:shadow-amber-50 border-2 border-black dark:border-white sm:bg-slate-400 dark:sm:bg-slate-700 bg-slate-400 dark:bg-slate-700"
+                ? "sm:text-gray-600 dark:sm:text-gray-300 sm:border-3 dark:sm:shadow-md shadow-md sm:shadow-amber-50 border-2 border-black dark:border-white sm:bg-slate-400 dark:sm:bg-slate-700 bg-slate-400 dark:bg-slate-700"
                 : "sm:text-black dark:sm:text-white"
             }`}
           >

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 
 function Landing() {
   const [time, setTime] = useState(new Date());
@@ -68,7 +69,7 @@ function Landing() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 w-6xl mx-auto mb-8 sm:mb-12 lg:mb-16 w-full">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 w-full mx-auto mb-8 sm:mb-12 lg:mb-16 ">
         <div className="bg-white/90 dark:bg-slate-800 rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-lg backdrop-blur-sm border border-white/30 dark:border-slate-600 hover:scale-102 transition-transform duration-300">
           <div className="w-12 h-12 sm:w-16 sm:h-16 bg-slate-400 dark:bg-slate-600 rounded-xl sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 mx-auto">
             <svg
@@ -98,9 +99,12 @@ function Landing() {
             Set customizable alarms with multiple tones. Never miss important
             meetings or tasks.
           </p>
-          <button className="text-blue-600 dark:text-blue-400 underline hover:cursor-pointer hover:text-blue-800 dark:hover:text-blue-300 transition-colors bg-transparent border-none p-0 font-inherit">
+          
+          <NavLink to={"Alarm"}>
+            <button className="text-blue-600 dark:text-blue-400 underline hover:cursor-pointer hover:text-blue-800 dark:hover:text-blue-300 transition-colors bg-transparent border-none p-0 font-inherit">
             Set Alarms
           </button>
+          </NavLink>
         </div>
 
         <div className="bg-white/90 dark:bg-slate-800 rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-lg backdrop-blur-sm border border-white/30 dark:border-slate-600 hover:scale-102 transition-transform duration-300">
@@ -128,9 +132,11 @@ function Landing() {
             Check time in any city worldwide. Perfect for remote teams and
             international coordination.
           </p>
-          <button className="text-blue-600 dark:text-blue-400 underline hover:cursor-pointer hover:text-blue-800 dark:hover:text-blue-300 transition-colors bg-transparent border-none p-0 font-inherit">
+          <NavLink to={"DigitalClock"}>
+            <button className="text-blue-600 dark:text-blue-400 underline hover:cursor-pointer hover:text-blue-800 dark:hover:text-blue-300 transition-colors bg-transparent border-none p-0 font-inherit">
             View World Clock
           </button>
+          </NavLink>
         </div>
 
         <div className="bg-white/90 dark:bg-slate-800 rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-lg backdrop-blur-sm border border-white/30 dark:border-slate-600 hover:scale-102 transition-transform duration-300">
@@ -160,9 +166,11 @@ function Landing() {
             Set precise countdown timers for productivity sessions, cooking, or
             any timed activity.
           </p>
-          <button className="text-blue-600 dark:text-blue-400 underline hover:cursor-pointer hover:text-blue-800 dark:hover:text-blue-300 transition-colors bg-transparent border-none p-0 font-inherit">
+          <NavLink to={"Timer"}>
+            <button className="text-blue-600 dark:text-blue-400 underline hover:cursor-pointer hover:text-blue-800 dark:hover:text-blue-300 transition-colors bg-transparent border-none p-0 font-inherit">
             Use Timer
           </button>
+          </NavLink>
         </div>
 
         <div className="bg-white/90 dark:bg-slate-800 rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-lg backdrop-blur-sm border border-white/30 dark:border-slate-600 hover:scale-102 transition-transform duration-300">
@@ -191,9 +199,11 @@ function Landing() {
             Track elapsed time with precision. Perfect for workouts, races, or
             time tracking.
           </p>
-          <button className="text-blue-600 dark:text-blue-400 underline hover:cursor-pointer hover:text-blue-800 dark:hover:text-blue-300 transition-colors bg-transparent border-none p-0 font-inherit">
+          <NavLink to={"Stopwatch"}>
+            <button className="text-blue-600 dark:text-blue-400 underline hover:cursor-pointer hover:text-blue-800 dark:hover:text-blue-300 transition-colors bg-transparent border-none p-0 font-inherit">
             Use Stopwatch
           </button>
+          </NavLink>
         </div>
       </div>
 
