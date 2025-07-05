@@ -8,6 +8,7 @@ import Timer from "./Timer.jsx";
 import Alarm from "./Alarm.jsx";
 import Landing from "./Landing.jsx";
 import { ClockProvider } from "./ClockContext"; // ✅ Import ClockProvider
+import { ThemeProvider } from "./components/theme-provider";
 
 const router = createHashRouter([
   {
@@ -40,7 +41,9 @@ const router = createHashRouter([
 
 // ✅ Wrap RouterProvider in ClockProvider
 createRoot(document.getElementById("root")).render(
-  <ClockProvider>
-    <RouterProvider router={router} />
-  </ClockProvider>
+  <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+    <ClockProvider>
+      <RouterProvider router={router} />
+    </ClockProvider>
+  </ThemeProvider>
 );

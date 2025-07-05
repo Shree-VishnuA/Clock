@@ -252,16 +252,16 @@ function DigitalClock() {
   };
 
   return (
-    <div className="h-screen bg-gradient-to-tl from-stone-400 via-slate-400 to-stone-400 px-3 sm:p-5">
-      <div className="fixed bottom-3 right-3 sm:bottom-4 sm:right-4 bg-white bg-opacity-20 backdrop-blur-2xl rounded-lg p-2 sm:p-3 z-50 border border-black shadow-lg">
-        <div className="text-black text-sm sm:text-lg font-mono font-bold">
+    <div className="h-screen bg-gradient-to-tl from-stone-400 via-slate-400 to-stone-400 dark:from-stone-800 dark:via-slate-800 dark:to-stone-800 px-3 sm:p-5">
+      <div className="fixed bottom-3 right-3 sm:bottom-4 sm:right-4 bg-white/90 dark:bg-slate-800/90 backdrop-blur-2xl rounded-lg p-2 sm:p-3 z-50 border border-white/30 dark:border-slate-600 shadow-lg">
+        <div className="text-black dark:text-white text-sm sm:text-lg font-mono font-bold">
           Local: {formatTime()}
         </div>
       </div>
 
       <div className="flex sm:items-center sm:justify-center sm:h-screen py-5 sm:py-8">
-        <div className="bg-white backdrop-blur-3xl rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-2xl w-full max-w-xs sm:max-w-md md:max-w-lg text-center mx-auto">
-          <div className="text-2xl sm:text-4xl font-bold text-gray-800 mb-6 sm:mb-8">
+        <div className="bg-white/90 dark:bg-slate-800/90 backdrop-blur-3xl rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-2xl border border-white/30 dark:border-slate-600 w-full max-w-xs sm:max-w-md md:max-w-lg text-center mx-auto">
+          <div className="text-2xl sm:text-4xl font-bold text-gray-800 dark:text-gray-100 mb-6 sm:mb-8">
             World Clock
           </div>
 
@@ -272,12 +272,12 @@ function DigitalClock() {
               onChange={(e) => setCity(e.target.value)}
               onKeyDown={handleKeyPress}
               placeholder="Enter city name (e.g., London, Tokyo)"
-              className="w-full p-3 sm:p-4 border-2 border-gray-500 rounded-full text-base sm:text-lg text-black outline-none focus:border-blue-500 focus:shadow-lg transition-all duration-300 bg-white bg-opacity-90"
+              className="w-full p-3 sm:p-4 border-2 border-gray-500 dark:border-slate-500 rounded-full text-base sm:text-lg text-black dark:text-white outline-none focus:border-blue-500 dark:focus:border-blue-400 focus:shadow-lg transition-all duration-300 bg-white/90 dark:bg-slate-700/90 placeholder:text-gray-500 dark:placeholder:text-gray-400"
             />
             <button
               onClick={getTime}
               disabled={isLoading}
-              className="mt-3 sm:mt-4 w-fit sm:w-auto bg-gray-600 text-white px-8 sm:px-10 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:active:scale-100"
+              className="mt-3 sm:mt-4 w-fit sm:w-auto bg-gray-600 dark:bg-slate-600 text-white px-8 sm:px-10 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:shadow-lg hover:scale-105 active:scale-95 hover:bg-gray-700 dark:hover:bg-slate-700 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:active:scale-100"
             >
               {isLoading ? (
                 <span className="flex items-center justify-center">
@@ -291,17 +291,17 @@ function DigitalClock() {
           </div>
 
           {result && (
-            <div className="mt-6 sm:mt-8 p-4 sm:p-6 bg-white bg-opacity-80 rounded-xl sm:rounded-2xl border-l-4 border-blue-500 animate-fade-in">
-              <div className="text-xl sm:text-2xl text-gray-800 font-semibold mb-2 sm:mb-3 break-words">
+            <div className="mt-6 sm:mt-8 p-4 sm:p-6 bg-white/80 dark:bg-slate-700/80 rounded-xl sm:rounded-2xl border-l-4 border-blue-500 dark:border-blue-400 animate-fade-in">
+              <div className="text-xl sm:text-2xl text-gray-800 dark:text-gray-100 font-semibold mb-2 sm:mb-3 break-words">
                 {result.cityName}
               </div>
-              <div className="text-2xl sm:text-3xl md:text-4xl text-blue-600 font-light mb-2 sm:mb-3 font-mono break-all">
+              <div className="text-2xl sm:text-3xl md:text-4xl text-blue-600 dark:text-blue-400 font-light mb-2 sm:mb-3 font-mono break-all">
                 {result.time}
               </div>
-              <div className="text-base sm:text-lg text-gray-600 mb-3 sm:mb-4 break-words">
+              <div className="text-base sm:text-lg text-gray-600 dark:text-gray-300 mb-3 sm:mb-4 break-words">
                 {result.date}
               </div>
-              <div className="text-xs sm:text-sm text-gray-500 bg-blue-50 p-2 sm:p-3 rounded-lg space-y-1">
+              <div className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 bg-blue-50 dark:bg-slate-600 p-2 sm:p-3 rounded-lg space-y-1">
                 <div className="break-all">Timezone: {result.timezone}</div>
                 <div>UTC Offset: {result.utcOffset}</div>
                 <div>Day: {result.dayOfWeek}</div>
@@ -310,14 +310,14 @@ function DigitalClock() {
           )}
 
           {error && (
-            <div className="mt-6 sm:mt-8 p-4 sm:p-6 bg-red-50 border-l-4 border-red-500 rounded-xl sm:rounded-2xl animate-fade-in">
-              <div className="text-red-600 text-base sm:text-lg break-words">
+            <div className="mt-6 sm:mt-8 p-4 sm:p-6 bg-red-50 dark:bg-red-900/30 border-l-4 border-red-500 dark:border-red-400 rounded-xl sm:rounded-2xl animate-fade-in">
+              <div className="text-red-600 dark:text-red-400 text-base sm:text-lg break-words">
                 ❌ {error}
               </div>
             </div>
           )}
 
-          <div className="mt-4 sm:mt-6 text-left text-xs sm:text-sm text-gray-600">
+          <div className="mt-4 sm:mt-6 text-left text-xs sm:text-sm text-gray-600 dark:text-gray-300">
             
             <div className="break-words leading-relaxed">
               <span className="font-medium">Major cities:</span> London, New

@@ -375,6 +375,15 @@ function Alarm() {
     setEditMinutes(value);
   }
 
+  // Enhanced AM/PM handlers for edit mode
+  function handleEditAM() {
+    setEditPeriod("AM");
+  }
+
+  function handleEditPM() {
+    setEditPeriod("PM");
+  }
+
   function handleSaveEdit() {
     if (!editHours || !editMinutes) {
       alert("Please enter both hours and minutes");
@@ -518,17 +527,17 @@ function Alarm() {
   }
 
   return (
-    <div className="h-screen w-full text-black bg-gradient-to-tl from-stone-400 via-slate-400 to-stone-400 relative">
+    <div className="h-screen w-full text-black dark:text-white bg-gradient-to-tl from-stone-400 via-slate-400 to-stone-400 dark:from-stone-800 dark:via-slate-800 dark:to-stone-800 relative">
       {/* Ringing Alarm Modal */}
       {ringingAlarm && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 px-4">
-          <div className="bg-white rounded-2xl p-6 sm:p-8 max-w-xs sm:max-w-sm w-full text-center animate-pulse">
+          <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 sm:p-8 max-w-xs sm:max-w-sm w-full text-center animate-pulse">
             <div className="text-4xl sm:text-6xl mb-4">🚨</div>
-            <div className="text-xl sm:text-2xl font-bold mb-2">ALARM!</div>
-            <div className="text-lg sm:text-xl mb-4">
+            <div className="text-xl sm:text-2xl font-bold mb-2 text-black dark:text-white">ALARM!</div>
+            <div className="text-lg sm:text-xl mb-4 text-black dark:text-white">
               {ringingAlarm.time} {ringingAlarm.period}
             </div>
-            <div className="text-xs sm:text-sm text-gray-600 mb-6">
+            <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mb-6">
               {getSelectedDaysDisplay(ringingAlarm.selectedDays)}
             </div>
             <button
@@ -542,8 +551,8 @@ function Alarm() {
       )}
 
       {/* Current Time Display */}
-      <div className="fixed bottom-15 right-1 bg-white/90 backdrop-blur-sm rounded-md p-1 sm:p-3 z-50">
-        <div className="text-sm sm:text-lg font-mono font-bold text-center">
+      <div className="fixed bottom-15 right-1 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm rounded-md p-1 sm:p-3 z-50 border border-white/30 dark:border-slate-600">
+        <div className="text-sm sm:text-lg font-mono font-bold text-center text-black dark:text-white">
           {currentTime.toLocaleTimeString([], {
             hour: "2-digit",
             minute: "2-digit",
@@ -551,7 +560,7 @@ function Alarm() {
             hour12: true,
           })}
         </div>
-        <div className="text-xs text-gray-500 text-center">
+        <div className="text-xs text-gray-500 dark:text-gray-400 text-center">
           {currentTime.toLocaleDateString([], {
             weekday: "short",
             month: "short",
@@ -570,7 +579,7 @@ function Alarm() {
             {Alarms.map((alarm) => (
               <div
                 key={alarm.id}
-                className={`bg-gray-500 text-white rounded-2xl p-3 sm:p-4 transition-all duration-200 ${
+                className={`bg-gray-500 dark:bg-slate-700 text-white rounded-2xl p-3 sm:p-4 transition-all duration-200 border border-white/30 dark:border-slate-600 ${
                   alarm.isActive ? "opacity-100" : "opacity-60"
                 } ${
                   ringingAlarm && ringingAlarm.id === alarm.id
@@ -587,7 +596,7 @@ function Alarm() {
                         value={editHours}
                         onChange={handleEditHours}
                         onKeyDown={handleKeyDown}
-                        className="w-12 sm:w-16 bg-gray-700 text-white rounded-md px-1 sm:px-2 py-1 text-lg sm:text-2xl text-center focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-12 sm:w-16 bg-gray-700 dark:bg-slate-600 text-white rounded-md px-1 sm:px-2 py-1 text-lg sm:text-2xl text-center focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-600 dark:border-slate-500"
                         min="1"
                         max="12"
                       />
@@ -597,27 +606,27 @@ function Alarm() {
                         value={editMinutes}
                         onChange={handleEditMinutes}
                         onKeyDown={handleKeyDown}
-                        className="w-12 sm:w-16 bg-gray-700 text-white rounded-md px-1 sm:px-2 py-1 text-lg sm:text-2xl text-center focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-12 sm:w-16 bg-gray-700 dark:bg-slate-600 text-white rounded-md px-1 sm:px-2 py-1 text-lg sm:text-2xl text-center focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-600 dark:border-slate-500"
                         min="0"
                         max="59"
                       />
                       <div className="flex flex-col ml-1 sm:ml-2">
                         <div
-                          onClick={() => setEditPeriod("AM")}
-                          className={`px-2 sm:px-3 py-1 sm:py-2 text-xs sm:text-sm rounded-t-md cursor-pointer ${
+                          onClick={handleEditAM}
+                          className={`px-2 sm:px-3 py-1 sm:py-2 text-xs sm:text-sm rounded-t-md cursor-pointer transition-colors ${
                             editPeriod === "AM"
-                              ? "bg-gray-800"
-                              : "bg-gray-400 hover:bg-gray-200"
+                              ? "bg-blue-600 text-white"
+                              : "bg-gray-400 dark:bg-slate-500 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-slate-400"
                           }`}
                         >
                           AM
                         </div>
                         <div
-                          onClick={() => setEditPeriod("PM")}
-                          className={`px-2 sm:px-3 py-1 sm:py-2 text-xs sm:text-sm rounded-b-md cursor-pointer ${
+                          onClick={handleEditPM}
+                          className={`px-2 sm:px-3 py-1 sm:py-2 text-xs sm:text-sm rounded-b-md cursor-pointer transition-colors ${
                             editPeriod === "PM"
-                              ? "bg-gray-800"
-                              : "bg-gray-400 hover:bg-gray-200"
+                              ? "bg-blue-600 text-white"
+                              : "bg-gray-400 dark:bg-slate-500 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-slate-400"
                           }`}
                         >
                           PM
@@ -629,12 +638,12 @@ function Alarm() {
                       <button
                         onClick={() => handleEditAlarm(alarm)}
                         className={`text-2xl sm:text-4xl font-light hover:text-blue-300 transition-colors cursor-pointer ${
-                          alarm.isActive ? "text-white" : "text-gray-400"
+                          alarm.isActive ? "text-white" : "text-gray-400 dark:text-gray-500"
                         }`}
                       >
                         {alarm.time}
                       </button>
-                      <div className="text-lg sm:text-2xl font-light text-gray-300">
+                      <div className="text-lg sm:text-2xl font-light text-gray-300 dark:text-gray-400">
                         {alarm.period.toLowerCase()}
                       </div>
                     </div>
@@ -645,13 +654,13 @@ function Alarm() {
                       <>
                         <button
                           onClick={handleSaveEdit}
-                          className="p-1 sm:p-2 text-green-400 hover:text-green-300 hover:bg-gray-700 rounded-md transition-colors"
+                          className="p-1 sm:p-2 text-green-400 hover:text-green-300 hover:bg-gray-700 dark:hover:bg-slate-600 rounded-md transition-colors"
                         >
                           <Check className="h-6 w-6 sm:h-8 sm:w-8" />
                         </button>
                         <button
                           onClick={handleCancelEdit}
-                          className="p-1 sm:p-2 text-red-400 hover:text-red-300 hover:bg-gray-700 rounded-md transition-colors"
+                          className="p-1 sm:p-2 text-red-400 hover:text-red-300 hover:bg-gray-700 dark:hover:bg-slate-600 rounded-md transition-colors"
                         >
                           <X className="h-6 w-6 sm:h-8 sm:w-8" />
                         </button>
@@ -661,7 +670,7 @@ function Alarm() {
                         {/* Toggle Switch */}
                         <div
                           className={`relative inline-flex h-5 w-9 sm:h-6 sm:w-11 items-center rounded-full cursor-pointer transition-colors ${
-                            alarm.isActive ? "bg-gray-800" : "bg-gray-400"
+                            alarm.isActive ? "bg-gray-800 dark:bg-slate-800" : "bg-gray-400 dark:bg-slate-500"
                           }`}
                           onClick={() => handleToggleAlarm(alarm.id)}
                         >
@@ -677,7 +686,7 @@ function Alarm() {
                         {/* Delete Button */}
                         <button
                           onClick={() => handleDeleteAlarm(alarm.id)}
-                          className="p-1 sm:p-2 text-gray-400 hover:text-red-400 hover:bg-gray-700 rounded-md transition-colors"
+                          className="p-1 sm:p-2 text-gray-400 dark:text-gray-500 hover:text-red-400 hover:bg-gray-700 dark:hover:bg-slate-600 rounded-md transition-colors"
                         >
                           <Trash2 className="h-3 w-3 sm:h-4 sm:w-4" />
                         </button>
@@ -689,13 +698,13 @@ function Alarm() {
                 {/* Days Selection */}
                 <div className="space-y-3">
                   <div className="flex justify-between items-center flex-wrap gap-2">
-                    <div className="text-xs sm:text-sm text-gray-300">
+                    <div className="text-xs sm:text-sm text-gray-300 dark:text-gray-400">
                       {getSelectedDaysDisplay(alarm.selectedDays)}
                     </div>
 
                     {/* Time Remaining Display */}
                     {alarm.isActive && editingAlarm !== alarm.id && (
-                      <div className="text-xs sm:text-sm text-blue-300 font-medium">
+                      <div className="text-xs sm:text-sm text-blue-300 dark:text-blue-400 font-medium">
                         {calculateTimeRemaining(alarm)}
                       </div>
                     )}
@@ -708,8 +717,8 @@ function Alarm() {
                         onClick={() => handleDayToggle(alarm.id, day.key)}
                         className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs sm:text-sm font-medium transition-all ${
                           alarm.selectedDays.includes(day.key)
-                            ? "bg-gray-800 text-white"
-                            : "bg-gray-400 text-gray-300 hover:bg-gray-500"
+                            ? "bg-gray-800 dark:bg-slate-800 text-white"
+                            : "bg-gray-400 dark:bg-slate-500 text-gray-300 dark:text-gray-400 hover:bg-gray-500 dark:hover:bg-slate-400"
                         }`}
                       >
                         {day.label}
@@ -724,8 +733,10 @@ function Alarm() {
       )}
 
       {/* Set Time Container */}
-      <div className="flex flex-col px-2 sm:px-5 gap-2 justify-evenly items-center fixed bottom-3 right-22 sm:left-[40vw] transform-translate-x-1/2 bg-white py-2 rounded-2xl shadow-lg w-[calc(100%-6rem)] sm:w-auto max-w-sm">
-        <div className="font-semibold text-sm sm:text-base">Set Time</div>
+      <div className="flex flex-col px-2 sm:px-5 gap-2 justify-evenly items-center fixed bottom-3 right-22 sm:left-[40vw] transform-translate-x-1/2 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm py-2 rounded-2xl shadow-lg border border-white/30 dark:border-slate-600 w-[calc(100%-6rem)] sm:w-auto max-w-sm">
+        <div className="font-semibold text-sm sm:text-base text-black dark:text-white">
+          Set Time
+        </div>
         <div className="flex w-full sm:w-fit gap-2 sm:gap-4 justify-center">
           <div className="flex gap-2 sm:gap-4">
             <div className="flex flex-col justify-center">
@@ -733,7 +744,7 @@ function Alarm() {
                 <input
                   type="number"
                   value={inputHours}
-                  className="w-12 sm:w-16 border rounded-md border-gray-600 text-center py-2 focus:outline-none focus:ring-2 focus:ring-slate-500 text-sm sm:text-base"
+                  className="w-12 sm:w-16 border rounded-md border-gray-600 dark:border-slate-500 bg-white dark:bg-slate-700 text-center py-2 focus:outline-none focus:ring-2 focus:ring-slate-500 dark:focus:ring-slate-400 text-sm sm:text-base text-black dark:text-white"
                   min={1}
                   max={12}
                   placeholder="12"
@@ -741,9 +752,11 @@ function Alarm() {
                   onKeyDown={handleKeyDown}
                 />
               </div>
-              <div className="text-gray-700 text-xs text-center">Hour</div>
+              <div className="text-gray-700 dark:text-gray-300 text-xs text-center">
+                Hour
+              </div>
             </div>
-            <div className="flex items-center justify-center text-lg sm:text-xl font-bold">
+            <div className="flex items-center justify-center text-lg sm:text-xl font-bold text-black dark:text-white">
               :
             </div>
             <div className="flex flex-col justify-center">
@@ -751,7 +764,7 @@ function Alarm() {
                 <input
                   type="number"
                   value={inputMinutes}
-                  className="w-12 sm:w-16 border rounded-md border-gray-600 text-center py-2 focus:outline-none focus:ring-2 focus:ring-slate-500 text-sm sm:text-base"
+                  className="w-12 sm:w-16 border rounded-md border-gray-600 dark:border-slate-500 bg-white dark:bg-slate-700 text-center py-2 focus:outline-none focus:ring-2 focus:ring-slate-500 dark:focus:ring-slate-400 text-sm sm:text-base text-black dark:text-white"
                   min={0}
                   max={59}
                   placeholder="00"
@@ -759,22 +772,28 @@ function Alarm() {
                   onKeyDown={handleKeyDown}
                 />
               </div>
-              <div className="text-gray-700 text-xs text-center">Minute</div>
+              <div className="text-gray-700 dark:text-gray-300 text-xs text-center">
+                Minute
+              </div>
             </div>
           </div>
-          <div className="flex flex-col border border-gray-600 rounded-md">
+          <div className="flex flex-col border border-gray-600 dark:border-slate-500 rounded-md justify-between bg-white dark:bg-slate-400">
             <div
-              className={`px-2 sm:px-3 py-1 text-xs sm:text-sm ${
-                amActive ? "bg-gray-600 text-white" : "hover:bg-gray-100"
+              className={`px-2 sm:px-3 h-full text-xs sm:text-sm flex items-center ${
+                amActive
+                  ? "bg-gray-600 dark:bg-blue-800 text-white"
+                  : "hover:bg-gray-100 dark:hover:bg-slate-600 text-black dark:text-white"
               } rounded-t-md hover:cursor-pointer transition-colors text-center`}
               onClick={handleAM}
             >
               AM
             </div>
-            <div className="border-t border-gray-300"></div>
+            <div className="border-t border-gray-300 dark:border-slate-500"></div>
             <div
-              className={`px-2 sm:px-3 py-1 text-xs sm:text-sm ${
-                pmActive ? "bg-gray-600 text-white" : "hover:bg-gray-100"
+              className={`px-2 sm:px-3 h-full text-xs sm:text-sm flex items-center ${
+                pmActive
+                  ? "bg-gray-600 dark:bg-blue-800 text-white"
+                  : "hover:bg-gray-100 dark:hover:bg-slate-600 text-black dark:text-white"
               } rounded-b-md hover:cursor-pointer transition-colors text-center`}
               onClick={handlePM}
             >
@@ -785,13 +804,13 @@ function Alarm() {
         <div className="flex justify-evenly w-full gap-2 sm:gap-4">
           <button
             onClick={handleCancel}
-            className="px-3 sm:px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors flex-1 sm:flex-none text-sm sm:text-base"
+            className="px-3 sm:px-4 py-2 border border-gray-300 dark:border-slate-500 bg-white dark:bg-slate-700 text-black dark:text-white rounded-md hover:bg-gray-50 dark:hover:bg-slate-600 transition-colors flex-1 sm:flex-none text-sm sm:text-base"
           >
             Cancel
           </button>
           <button
             onClick={handleOK}
-            className="px-3 sm:px-4 py-2 bg-slate-500 text-white rounded-md hover:bg-slate-600 transition-colors flex-1 sm:flex-none text-sm sm:text-base"
+            className="px-3 sm:px-4 py-2 bg-slate-500 dark:bg-slate-600 text-white rounded-md hover:bg-slate-600 dark:hover:bg-slate-700 transition-colors flex-1 sm:flex-none text-sm sm:text-base"
           >
             OK
           </button>
