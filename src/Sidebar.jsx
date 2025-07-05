@@ -15,7 +15,7 @@ function Sidebar() {
             <img
               src="logo.png"
               alt=""
-              className={`rounded-full bg-stone-300 w-18 dark:bg-stone-600`}
+              className={`rounded-full bg-stone-300 w-12 sm:w-18 dark:bg-stone-600 `}
             />
           </div>
         )}
@@ -135,7 +135,7 @@ function Sidebar() {
               <line x1="12" x2="15" y1="14" y2="11" />
               <circle cx="12" cy="14" r="8" />
             </svg>
-            <p>Stopwatch</p>
+            <p className="text-[9px] md:text-sm">Stopwatch</p>
           </div>
         )}
       </NavLink>

@@ -5,14 +5,17 @@ import { ModeToggle } from "./components/mode-toggle";
 
 function Layout() {
   return (
-    <div className="flex overflow-y-hidden min-h-screen bg-background text-foreground">
-      <div>
-        <Sidebar />
+    <div className="flex min-h-screen bg-background text-foreground relative">
+      {/* Sidebar */}
+      <Sidebar />
+
+      {/* ModeToggle Button - Fixed to screen */}
+      <div className="fixed sm:top-2 top-22 right-2  z-500">
+        <ModeToggle />
       </div>
-      <div className="sm:w-[calc(100vw-100px)] sm:ml-25 sm:mt-0 w-screen mt-20">
-        <div className="fixed top-2 right-2 z-50">
-          <ModeToggle></ModeToggle>
-        </div>
+
+      {/* Main Content */}
+      <div className="flex-1 sm:ml-25 mt-20 sm:mt-0 overflow-y-auto">
         <Outlet />
       </div>
     </div>
