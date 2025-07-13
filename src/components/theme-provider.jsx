@@ -1,40 +1,49 @@
-import  { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
-// Default theme context state
-const ThemeProviderContext = createContext({
-  theme: "system",
-  setTheme: () => {},
-});
+const initialState = {
+  theme: "light",
+  setTheme: () => null,
+};
+
+const ThemeProviderContext = createContext(initialState);
 
 export function ThemeProvider({
   children,
-  defaultTheme = "system",
-  storageKey = "vite-ui-theme",
+  defaultTheme = "light",
+  storageKey = "ui-theme",
   ...props
 }) {
   const [theme, setTheme] = useState(() => {
-    return localStorage.getItem(storageKey) || defaultTheme;
+    // First check if there's a stored theme
+    const storedTheme = localStorage.getItem(storageKey);
+    if (storedTheme) {
+      return storedTheme;
+    }
+    
+    // If no stored theme, check browser preference
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      return "dark";
+    }
+    
+    // Fall back to provided defaultTheme
+    return defaultTheme;
   });
 
-  // Apply theme to <html> root element
   useEffect(() => {
-    const root = document.documentElement;
+    const root = window.document.documentElement;
     root.classList.remove("light", "dark");
-
-    if (theme === "system") {
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      root.classList.add(prefersDark ? "dark" : "light");
-    } else {
+    if (theme === "light" || theme === "dark") {
       root.classList.add(theme);
     }
   }, [theme]);
 
-  // Theme context value
   const value = {
     theme,
     setTheme: (newTheme) => {
-      localStorage.setItem(storageKey, newTheme);
-      setTheme(newTheme);
+      if (newTheme === "light" || newTheme === "dark") {
+        localStorage.setItem(storageKey, newTheme);
+        setTheme(newTheme);
+      }
     },
   };
 
@@ -45,7 +54,10 @@ export function ThemeProvider({
   );
 }
 
-// Custom hook to use theme
-export function useTheme() {
-  return useContext(ThemeProviderContext);
-}
+export const useTheme = () => {
+  const context = useContext(ThemeProviderContext);
+  if (context === undefined) {
+    throw new Error("useTheme must be used within a ThemeProvider");
+  }
+  return context;
+};
